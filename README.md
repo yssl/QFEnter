@@ -1,14 +1,18 @@
 # QFEnter
 
-QFEnter provides more intuitive file opening in Quickfix window.
+QFEnter provides more intuitive file opening methods in vim Quickfix window. 
 
-By default, you cannot specify the window in which a file is opened by press `<Enter>` in Quickfix.
+Some of the default Quickfix file opening behaviors are quite inconvenient,
+
+- In Quickfix, you cannot specify the window in which a file is opened by press `<Enter>`.
+It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which opens files in a previously focused window.
 `:help quickfix` says,
 > Hitting the \<Enter\> key or double-clicking the mouse on a line has the same effect. The
 file containing the error is opened **in the window above the quickfix window**. 
 
-This is inconsistent behavior with other opening commands like `:cnext` and `:cprev` which opens files in a previously focused window.
-It is confusing and bothers me everytime, so I wrote a simple plugin to solve it.
+- Quickfix has a opening command in a new window `ctrl+w`, but with strong limiation - the new window is created just above Quickfix window.
+
+They are confusing and bothers me every time, so I wrote a simple plugin to improve the behaviors.
 
 ## Usage
 - `<Enter>` Open a file under cursor in previously focused window
@@ -16,9 +20,10 @@ It is confusing and bothers me everytime, so I wrote a simple plugin to solve it
 - `<Leader><Space>` Open a file under cursor in new horizontal split from previously focused window
 
 You can change the key mappings in your .vimrc.
-The default setting is : 
+The default setting is, 
 ```
 let g:qfenter_open = '<CR>'
 let g:qfenter_vopen = '<Leader><CR>'
 let g:qfenter_hopen = '<Leader><Space>'
 ```
+`
