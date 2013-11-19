@@ -5,12 +5,12 @@ QFEnter provides more intuitive file opening methods in vim Quickfix window.
 Some of the default Quickfix file opening behaviors are quite inconvenient,
 
 - In Quickfix, you cannot specify the window in which a file is opened by press `<Enter>`.
-It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which opens files in a previously focused window.
+It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which open files in a previously focused window.
 `:help quickfix` says,
 > Hitting the \<Enter\> key or double-clicking the mouse on a line has the same effect. The
 file containing the error is opened **in the window above the quickfix window**. 
 
-- Quickfix has a opening command in a new window `ctrl+w`, but with strong limiation - the new window is created just above Quickfix window.
+- Quickfix has a opening in a new window command `ctrl+w`, but it has strong limiation. The new window is created just above Quickfix window.
 
 They are confusing and bothers me every time, so I wrote a simple plugin to improve the behaviors.
 
