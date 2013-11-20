@@ -26,4 +26,3 @@ let g:qfenter_open = '<CR>'
 let g:qfenter_vopen = '<Leader><CR>'
 let g:qfenter_hopen = '<Leader><Space>'
 ```
-`

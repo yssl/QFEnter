@@ -12,24 +12,28 @@ set cpo&vim
 " my code
 
 " global variables
-if !exists('g:qfenter_open')
-	let g:qfenter_open = '<CR>'
+if !exists('g:qfenter_open_map')
+	let g:qfenter_open_map = '<CR>'
 endif
 
-if !exists('g:qfenter_vopen')
-	let g:qfenter_vopen = '<Leader><CR>'
+if !exists('g:qfenter_vopen_map')
+	let g:qfenter_vopen_map = '<Leader><CR>'
 endif
 
-if !exists('g:qfenter_hopen')
-	let g:qfenter_hopen = '<Leader><Space>'
+if !exists('g:qfenter_hopen_map')
+	let g:qfenter_hopen_map = '<Leader><Space>'
+endif
+
+if !exists('g:qfenter_cc_cmd')
+	let g:qfenter_cc_cmd = '#cc'
 endif
 
 " autocmd
 augroup QFEnterAutoCmds
 	autocmd!
-	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_open.' :call QFEnter#OpenQFItemAtPrevWin()<CR>'
-	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_vopen.' :call QFEnter#VOpenQFItemAtPrevWin()<CR>'
-	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_hopen.' :call QFEnter#HOpenQFItemAtPrevWin()<CR>'
+	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_open_map.' :call QFEnter#OpenQFItemAtPrevWin()<CR>'
+	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_vopen_map.' :call QFEnter#VOpenQFItemAtPrevWin()<CR>'
+	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_hopen_map.' :call QFEnter#HOpenQFItemAtPrevWin()<CR>'
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""
