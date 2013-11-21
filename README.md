@@ -2,19 +2,22 @@
 
 QFEnter provides more intuitive file opening methods in vim Quickfix window. 
 
-Some of the default Quickfix file opening behaviors are quite inconvenient,
+Some of the default methods are quite inconvenient,
 
-- In Quickfix, you cannot specify the window in which a file is opened by pressing `<Enter>`.
-It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which open files in a previously focused window.
-`:help quickfix` says,
+- You cannot specify the window in which a file is opened when you press `<Enter>` in Quickfix.
+It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which open a file in a previously focused window.
 > Hitting the \<Enter\> key or double-clicking the mouse on a line has the same effect. The
-file containing the error is opened **in the window above the quickfix window**. 
+file containing the error is opened in the **window above the quickfix window**. 
+*`:help quickfix`*
 
-- Quickfix has a opening in a new window command `ctrl+w`, but it has strong limiation - the new window is created just above Quickfix window.
+- You also cannot specify the window when you use `Ctrl-W <Enter>`.
+New horizontal split window is created only above Quickfix window.
+There is even no command for 'open in new vertical split window'.
 
-They are confusing and bothers me every time, so I wrote a simple plugin to improve the behaviors.
+They are confusing and bothers me every time, so I wrote a simple plugin to make up for these weak points.
 
 ## Usage
+
 - `<Enter>` Open a file under cursor in previously focused window
 - `<Leader><Enter>` Open a file under cursor in new vertical split from previously focused window
 - `<Leader><Space>` Open a file under cursor in new horizontal split from previously focused window
@@ -22,7 +25,7 @@ They are confusing and bothers me every time, so I wrote a simple plugin to impr
 You can change the key mappings in your .vimrc.
 The default setting is, 
 ```
-let g:qfenter_open = '<CR>'
-let g:qfenter_vopen = '<Leader><CR>'
-let g:qfenter_hopen = '<Leader><Space>'
+let g:qfenter_open_map = '<CR>'
+let g:qfenter_vopen_map = '<Leader><CR>'
+let g:qfenter_hopen_map = '<Leader><Space>'
 ```
