@@ -7,7 +7,7 @@ Some of the default methods are quite inconvenient,
 - You cannot specify the window in which a file is opened when you press `<Enter>` in Quickfix.
 It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which open a file in a previously focused window.
 > Hitting the \<Enter\> key or double-clicking the mouse on a line has the same effect. The
-file containing the error is opened in the **window above the quickfix window**. 
+file containing the error is opened in the **window above the quickfix window**.  
 *`:help quickfix`*
 
 - You also cannot specify the window when you use `Ctrl-W <Enter>`.
