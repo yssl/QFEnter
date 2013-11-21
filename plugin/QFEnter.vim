@@ -13,15 +13,15 @@ set cpo&vim
 
 " global variables
 if !exists('g:qfenter_open_map')
-	let g:qfenter_open_map = '<CR>'
-endif
+	let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+endi
 
 if !exists('g:qfenter_vopen_map')
-	let g:qfenter_vopen_map = '<Leader><CR>'
+	let g:qfenter_vopen_map = ['<Leader><CR>']
 endif
 
 if !exists('g:qfenter_hopen_map')
-	let g:qfenter_hopen_map = '<Leader><Space>'
+	let g:qfenter_hopen_map = ['<Leader><Space>']
 endif
 
 if !exists('g:qfenter_cc_cmd')
@@ -31,10 +31,17 @@ endif
 " autocmd
 augroup QFEnterAutoCmds
 	autocmd!
-	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_open_map.' :call QFEnter#OpenQFItemAtPrevWin()<CR>'
-	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_vopen_map.' :call QFEnter#VOpenQFItemAtPrevWin()<CR>'
-	autocmd FileType qf exec 'nnoremap <buffer> '.g:qfenter_hopen_map.' :call QFEnter#HOpenQFItemAtPrevWin()<CR>'
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, 'QFEnter#OpenQFItemAtPrevWin')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, 'QFEnter#VOpenQFItemAtPrevWin')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, 'QFEnter#HOpenQFItemAtPrevWin')
 augroup END
+
+" functions
+function s:RegisterMapping(keymap, funcname)
+	for key in a:keymap
+		execute 'nnoremap <buffer> '.key.' :call '.a:funcname.'()<CR>'
+	endfor
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""
 " template code
