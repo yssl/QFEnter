@@ -1,0 +1,76 @@
+*QFEnter.txt*    A vim plugin for more intuitive file opening in Quickfix window.
+*QFEnter*
+
+Author:       yssl <http://github.com/yssl>
+
+==============================================================================
+Contents                                                    *QFEnter-contents*
+
+         1. Introduction ............................... |QFEnter-intro|
+         2. Usage ...................................... |QFEnter-usage|
+         3. Options .................................... |QFEnter-options|
+         4. Changelog .................................. |QFEnter-changelog|
+
+==============================================================================
+1. Introduction                                                *QFEnter-intro*
+
+QFEnter provides more intuitive file opening methods in vim Quickfix window.
+
+Some of the default methods are quite inconvenient,
+
+- You cannot specify the window in which a file is opened when you press 
+`<Enter>` in Quickfix - only the window above Quickfix window. 
+It is inconsistent with other Quickfix commands like `:cnext` and `:cprev`
+ which open a file in a previously focused window.
+
+- You also cannot specify the window when you use `Ctrl-W <Enter>`, 
+because vim always create a new horizontal split window above Quickfix window.
+There is even no command for 'open in new vertical split window'.
+
+They are confusing and bothers me every time, so I wrote a simple plugin 
+to make up for these weak points.
+It's name comes from the most basic method for opening a file in Quickfix window
+ - the `<Enter>` key.
+
+==============================================================================
+2. Usage                                                       *QFEnter-usage*
+
+- `<Enter>`, `<2-LeftMouse>` Open a file under cursor in previously 
+  focused window. (`<2-LeftMouse>` means a left mouse button double click.)
+
+- `<Leader><Enter>` Open a file under cursor in new vertical split 
+  from previously focused window.
+
+- `<Leader><Space>` Open a file under cursor in new horizontal split 
+  from previously focused window.
+
+You can change the key mappings in your .vimrc (see |QFEnter-options|). 
+
+==============================================================================
+3. Options                                                   *QFEnter-options*
+
+|QFEnter| mappings are enabled only in |Quickfix| window.
+
+*g:qfenter_open_map*
+Key mappings to open a file under cursor in previously focused window. 
+Default: >
+  let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+<
+
+*g:qfenter_vopen_map*
+Key mappings to open a file under cursor in new vertical split from previously focused window.
+Default: >
+  let g:qfenter_vopen_map = ['<Leader><CR>']
+<
+
+*g:qfenter_hopen_map*
+Key mappings to open a file under cursor in new horizontal split from previously focused window.
+Default: >
+  let g:qfenter_hopen_map = ['<Leader><Space>']
+<
+
+==============================================================================
+4. Changelog                                               *QFEnter-changelog*
+
+1.0.0                       2013/11/24
+    - first version
