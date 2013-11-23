@@ -1,5 +1,5 @@
 " File:         autoload/QFEnter.vim
-" Description:  A vim plugin for more intuitive file opening when hitting Enter key in Quickfix window.
+" Description:  A vim plugin for more intuitive file opening in Quickfix window.
 " Author:       yssl <http://github.com/yssl>
 " License:      MIT License
 

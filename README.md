@@ -1,6 +1,6 @@
 # QFEnter
 
-QFEnter provides more intuitive file opening methods in vim Quickfix window. 
+QFEnter provides more intuitive file opening methods in vim Quickfix window.
 
 Some of the default methods are quite inconvenient,
 
@@ -15,6 +15,7 @@ because vim always create a new horizontal split window above Quickfix window.
 There is even no command for 'open in new vertical split window'.
 
 They are confusing and bothers me every time, so I wrote a simple plugin to make up for these weak points.
+It's name comes from the most basic method for opening a file in Quickfix window - the `<Enter>` key.
 
 ## Usage
 
