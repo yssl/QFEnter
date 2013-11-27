@@ -14,35 +14,37 @@ Contents                                                    *QFEnter-contents*
 ==============================================================================
 1. Introduction                                                *QFEnter-intro*
 
-QFEnter provides more intuitive file opening methods in vim Quickfix window.
+QFEnter provides easy and intuitive ways to open files from Quickfix window.
 
-Some of the default methods are quite inconvenient,
+Some of default methods are quite inconvenient,
 
-- You cannot specify the window in which a file is opened when you press 
-`<Enter>` in Quickfix - only the window above Quickfix window. 
-It is inconsistent with other Quickfix commands like `:cnext` and `:cprev`
- which open a file in a previously focused window.
+- You cannot specify the window in which a file is opened when you press `<Enter>` in Quickfix.  
+
+  > Hitting the <Enter> key or double-clicking the mouse on a line has the same effect. 
+    The file containing the error is opened **in the window above the quickfix window**.  
+    `from :help quickfix` 
+
+  It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which open a file in a previously focused window.
 
 - You also cannot specify the window when you use `Ctrl-W <Enter>`, 
-because vim always create a new horizontal split window above Quickfix window.
+because Vim always create a new horizontal split window above Quickfix window and open a file in it.
 There is even no command for 'open in new vertical split window'.
 
-They are confusing and bothers me every time, so I wrote a simple plugin 
-to make up for these weak points.
-It's name comes from the most basic method for opening a file in Quickfix window
- - the `<Enter>` key.
+They are confusing and bothers me every time, so I wrote a simple plugin to make up for these weak points.
+It's name comes from the most basic way to open a file from Quickfix window - the `<Enter>` key.
 
 ==============================================================================
 2. Usage                                                       *QFEnter-usage*
 
-- `<Enter>`, `<2-LeftMouse>` Open a file under cursor in previously 
-  focused window. (`<2-LeftMouse>` means a left mouse button double click.)
+<Enter>, <2-LeftMouse>  
+Open a file under cursor in previously focused window. 
+(<2-LeftMouse> means a left mouse button double click.)
 
-- `<Leader><Enter>` Open a file under cursor in new vertical split 
-  from previously focused window.
+<Leader><Enter>
+Open a file under cursor in new vertical split from previously focused window.
 
-- `<Leader><Space>` Open a file under cursor in new horizontal split 
-  from previously focused window.
+<Leader><Space>
+Open a file under cursor in new horizontal split from previously focused window.
 
 You can change the key mappings in your .vimrc (see |QFEnter-options|). 
 

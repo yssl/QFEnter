@@ -1,5 +1,5 @@
 " File:         plugin/QFEnter.vim
-" Description:  A vim plugin for more intuitive file opening in Quickfix window.
+" Description:  A vim plugin for intuitive file opening from Quickfix window.
 " Author:       yssl <http://github.com/yssl>
 " License:      MIT License
 
