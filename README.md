@@ -18,10 +18,12 @@ file containing the error is opened **in the window above the quickfix window**.
 because Vim always create a new horizontal split window above Quickfix window and open a file in it.
 There is even no command for 'open in new vertical split window'.
 
-They are confusing and bothers me every time, so I wrote a simple plugin to make up for these weak points.
+They are confusing and bother me every time, so I wrote a simple plugin to make up for these weak points.
 It's name comes from the most basic way to open a file from Quickfix window - the `<Enter>` key.
 
 ## Usage
+
+In Quickfix window,
 
 **\<Enter\>**, **\<2-LeftMouse\>**  
 Open a file under cursor in previously focused window. (\<2-LeftMouse\> means a left mouse button double click.)

@@ -36,6 +36,8 @@ It's name comes from the most basic way to open a file from Quickfix window - th
 ==============================================================================
 2. Usage                                                       *QFEnter-usage*
 
+In |Quickfix| window,
+
 <Enter>, <2-LeftMouse>  
 Open a file under cursor in previously focused window. 
 (<2-LeftMouse> means a left mouse button double click.)
