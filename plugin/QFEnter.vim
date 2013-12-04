@@ -24,6 +24,10 @@ if !exists('g:qfenter_hopen_map')
 	let g:qfenter_hopen_map = ['<Leader><Space>']
 endif
 
+if !exists('g:qfenter_topen_map')
+	let g:qfenter_topen_map = ['<Leader><Tab>']
+endif
+
 if !exists('g:qfenter_cc_cmd')
 	let g:qfenter_cc_cmd = '#cc'
 endif
@@ -31,13 +35,14 @@ endif
 " autocmd
 augroup QFEnterAutoCmds
 	autocmd!
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, 'QFEnter#OpenQFItemAtPrevWin')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, 'QFEnter#VOpenQFItemAtPrevWin')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, 'QFEnter#HOpenQFItemAtPrevWin')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, 'QFEnter#OpenQFItem')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, 'QFEnter#VOpenQFItem')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, 'QFEnter#HOpenQFItem')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_topen_map, 'QFEnter#TOpenQFItem')
 augroup END
 
 " functions
-function s:RegisterMapping(keymap, funcname)
+function! s:RegisterMapping(keymap, funcname)
 	for key in a:keymap
 		execute 'nnoremap <buffer> '.key.' :call '.a:funcname.'()<CR>'
 	endfor

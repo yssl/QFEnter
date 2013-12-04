@@ -4,14 +4,14 @@
 " License:      MIT License
 
 " functions
-function! QFEnter#OpenQFItemAtPrevWin()
+function! QFEnter#OpenQFItem()
 	let lnumqf = line('.')
 	execute 'wincmd p'
 	let cc_cmd = substitute(g:qfenter_cc_cmd, '#', lnumqf, "")
 	execute cc_cmd
 endfunction
 
-function! QFEnter#VOpenQFItemAtPrevWin()
+function! QFEnter#VOpenQFItem()
 	let lnumqf = line('.')
 	execute 'wincmd p'
 	execute 'vnew'
@@ -19,10 +19,17 @@ function! QFEnter#VOpenQFItemAtPrevWin()
 	execute cc_cmd
 endfunction
 
-function! QFEnter#HOpenQFItemAtPrevWin()
+function! QFEnter#HOpenQFItem()
 	let lnumqf = line('.')
 	execute 'wincmd p'
 	execute 'new'
+	let cc_cmd = substitute(g:qfenter_cc_cmd, '#', lnumqf, "")
+	execute cc_cmd
+endfunction
+
+function! QFEnter#TOpenQFItem()
+	let lnumqf = line('.')
+	execute 'tabnew'
 	let cc_cmd = substitute(g:qfenter_cc_cmd, '#', lnumqf, "")
 	execute cc_cmd
 endfunction
