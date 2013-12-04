@@ -29,7 +29,7 @@ if !exists('g:qfenter_topen_map')
 endif
 
 if !exists('g:qfenter_cc_cmd')
-	let g:qfenter_cc_cmd = '#cc'
+	let g:qfenter_cc_cmd = '##cc'
 endif
 
 " autocmd
