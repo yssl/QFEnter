@@ -27,7 +27,7 @@ function! QFEnter#HOpenQFItem()
 	execute cc_cmd
 endfunction
 
-function! QFEnter#TOpenQFItem()
+function! QFEnter#TTOpenQFItem()
 	let lnumqf = line('.')
 	execute 'tabnew'
 	let cc_cmd = substitute(g:qfenter_cc_cmd, '##', lnumqf, "")

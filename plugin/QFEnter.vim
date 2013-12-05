@@ -24,8 +24,8 @@ if !exists('g:qfenter_hopen_map')
 	let g:qfenter_hopen_map = ['<Leader><Space>']
 endif
 
-if !exists('g:qfenter_topen_map')
-	let g:qfenter_topen_map = ['<Leader><Tab>']
+if !exists('g:qfenter_ttopen_map')
+	let g:qfenter_ttopen_map = ['<Leader><Tab><Tab>']
 endif
 
 if !exists('g:qfenter_cc_cmd')
@@ -38,7 +38,7 @@ augroup QFEnterAutoCmds
 	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, 'QFEnter#OpenQFItem')
 	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, 'QFEnter#VOpenQFItem')
 	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, 'QFEnter#HOpenQFItem')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_topen_map, 'QFEnter#TOpenQFItem')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_ttopen_map, 'QFEnter#TTOpenQFItem')
 augroup END
 
 " functions

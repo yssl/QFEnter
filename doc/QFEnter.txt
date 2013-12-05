@@ -14,11 +14,12 @@ Contents                                                    *QFEnter-contents*
 ==============================================================================
 1. Introduction                                                *QFEnter-intro*
 
-QFEnter provides easy and intuitive ways to open files from Quickfix window.
+QFEnter allows you to open a Quickfix item in a window you choose.
+You can specify the window by giving it a focus just before jumping to Quickfix window or just use a new split window or new tab.
 
-Some of default methods are quite inconvenient,
+Some of default opening methods are quite inconvenient,
 
-- You cannot specify the window in which a file is opened when you press `<Enter>` in Quickfix.  
+- You cannot select a window in which a file is opened when you press `<Enter>` in Quickfix.  
 
   > Hitting the <Enter> key or double-clicking the mouse on a line has the same effect. 
     The file containing the error is opened **in the window above the quickfix window**.  
@@ -48,6 +49,9 @@ Open a file under cursor in new vertical split from previously focused window.
 <Leader><Space>
 Open a file under cursor in new horizontal split from previously focused window.
 
+<Leader><Tab><Tab>  
+Open a file under cursor in new tab window.
+
 You can change the key mappings in your .vimrc (see |QFEnter-options|). 
 
 ==============================================================================
@@ -73,8 +77,28 @@ Default: >
   let g:qfenter_hopen_map = ['<Leader><Space>']
 <
 
+*g:qfenter_ttopen_map*
+Key mappings to open a file under cursor in new tab window.
+Default: >
+  let g:qfenter_ttopen_map = ['<Leader><Tab><Tab>']
+<
+
+*g:qfenter_cc_cmd*
+QFEnter internally uses |:cc| command.
+If you're using your custom "cc" command instead of vim's default |:cc|, you
+can register it by setting this option and make QFEnter use it.
+The option should have "##" which is converted to the line number later.
+Default: >
+  let g:qfenter_cc_cmd = '##cc'
+<
+
 ==============================================================================
 4. Changelog                                               *QFEnter-changelog*
+
+1.1.0                       2013/12/06
+    - add new feature
+		 : open a file under cursor in new tab window.
+		 : register custom "cc" command with g:qfenter_cc_cmd
 
 1.0.0                       2013/11/24
     - first version
