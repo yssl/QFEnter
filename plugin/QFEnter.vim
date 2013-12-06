@@ -25,7 +25,7 @@ if !exists('g:qfenter_hopen_map')
 endif
 
 if !exists('g:qfenter_ttopen_map')
-	let g:qfenter_ttopen_map = ['<Leader><Tab><Tab>']
+	let g:qfenter_ttopen_map = ['<Tab><Tab>']
 endif
 
 if !exists('g:qfenter_cc_cmd')

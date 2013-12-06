@@ -29,7 +29,7 @@ Some of default opening methods are quite inconvenient,
 
 - You also cannot specify the window when you use `Ctrl-W <Enter>`, 
 because Vim always create a new horizontal split window above Quickfix window and open a file in it.
-There is even no command for 'open in new vertical split window'.
+There is even no command for 'open in a new vertical split window'.
 
 They are confusing and bothers me every time, so I wrote a simple plugin to make up for these weak points.
 It's name comes from the most basic way to open a file from Quickfix window - the `<Enter>` key.
@@ -40,17 +40,17 @@ It's name comes from the most basic way to open a file from Quickfix window - th
 In |Quickfix| window,
 
 <Enter>, <2-LeftMouse>  
-Open a file under cursor in previously focused window. 
+Open a file under cursor in a previously focused window. 
 (<2-LeftMouse> means a left mouse button double click.)
 
 <Leader><Enter>
-Open a file under cursor in new vertical split from previously focused window.
+Open a file under cursor in a new vertical split from previously focused window.
 
 <Leader><Space>
-Open a file under cursor in new horizontal split from previously focused window.
+Open a file under cursor in a new horizontal split from previously focused window.
 
-<Leader><Tab><Tab>  
-Open a file under cursor in new tab window.
+<Tab><Tab>  
+Open a file under cursor in a new tab.
 
 You can change the key mappings in your .vimrc (see |QFEnter-options|). 
 
@@ -60,27 +60,27 @@ You can change the key mappings in your .vimrc (see |QFEnter-options|).
 |QFEnter| mappings are enabled only in |Quickfix| window.
 
 *g:qfenter_open_map*
-Key mappings to open a file under cursor in previously focused window. 
+Key mappings to open a file under cursor in a previously focused window. 
 Default: >
   let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
 <
 
 *g:qfenter_vopen_map*
-Key mappings to open a file under cursor in new vertical split from previously focused window.
+Key mappings to open a file under cursor in a new vertical split from previously focused window.
 Default: >
   let g:qfenter_vopen_map = ['<Leader><CR>']
 <
 
 *g:qfenter_hopen_map*
-Key mappings to open a file under cursor in new horizontal split from previously focused window.
+Key mappings to open a file under cursor in a new horizontal split from previously focused window.
 Default: >
   let g:qfenter_hopen_map = ['<Leader><Space>']
 <
 
 *g:qfenter_ttopen_map*
-Key mappings to open a file under cursor in new tab window.
+Key mappings to open a file under cursor in a new tab.
 Default: >
-  let g:qfenter_ttopen_map = ['<Leader><Tab><Tab>']
+  let g:qfenter_ttopen_map = ['<Tab><Tab>']
 <
 
 *g:qfenter_cc_cmd*
@@ -95,9 +95,12 @@ Default: >
 ==============================================================================
 4. Changelog                                               *QFEnter-changelog*
 
+1.1.1                       2013/12/06
+    - change default mapping for "open a file in a new tab"
+
 1.1.0                       2013/12/06
-    - add new feature
-		 : open a file under cursor in new tab window.
+    - add new features
+		 : open a file under cursor in a new tab.
 		 : register custom "cc" command with g:qfenter_cc_cmd
 
 1.0.0                       2013/11/24

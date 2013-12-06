@@ -27,21 +27,21 @@ It's name comes from the most basic way to open a file from Quickfix window - th
 In Quickfix window,
 
 **\<Enter\>**, **\<2-LeftMouse\>**  
-Open a file under cursor in previously focused window. (\<2-LeftMouse\> means a left mouse button double click.)
+Open a file under cursor in a previously focused window. (\<2-LeftMouse\> means a left mouse button double click.)
 
 **\<Leader\>\<Enter\>**  
-Open a file under cursor in new vertical split from previously focused window.
+Open a file under cursor in a new vertical split from previously focused window.
 
 **\<Leader\>\<Space\>**  
-Open a file under cursor in new horizontal split from previously focused window.
+Open a file under cursor in a new horizontal split from previously focused window.
 
-**\<Leader\>\<Tab\>\<Tab\>**  
-Open a file under cursor in new tab window.
+**\<Tab\>\<Tab\>**  
+Open a file under cursor in a new tab.
 
 You can change the key mappings in your .vimrc. The default setting is, 
 ```
 let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
 let g:qfenter_vopen_map = ['<Leader><CR>']
 let g:qfenter_hopen_map = ['<Leader><Space>']
-let g:qfenter_ttopen_map = ['<Leader><Tab><Tab>']
+let g:qfenter_ttopen_map = ['<Tab><Tab>']
 ```
