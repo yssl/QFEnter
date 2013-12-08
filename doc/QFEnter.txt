@@ -1,4 +1,4 @@
-*QFEnter.txt*    A vim plugin for more intuitive file opening in Quickfix window.
+*QFEnter.txt*    Open a Quickfix item in a window you choose.
 *QFEnter*
 
 Author:       yssl <http://github.com/yssl>
@@ -15,7 +15,7 @@ Contents                                                    *QFEnter-contents*
 1. Introduction                                                *QFEnter-intro*
 
 QFEnter allows you to open a Quickfix item in a window you choose.
-You can specify the window by giving it a focus just before jumping to Quickfix window or just use a new split window or new tab.
+You can choose the window by giving it a focus just before jumping to Quickfix window.
 
 Some of default opening methods are quite inconvenient,
 
@@ -44,13 +44,14 @@ Open a file under cursor in a previously focused window.
 (<2-LeftMouse> means a left mouse button double click.)
 
 <Leader><Enter>
-Open a file under cursor in a new vertical split from previously focused window.
+Open a file under cursor in a new vertical split from a previously focused window.
 
 <Leader><Space>
-Open a file under cursor in a new horizontal split from previously focused window.
+Open a file under cursor in a new horizontal split from a previously focused window.
 
-<Tab><Tab>  
+<Leader><Tab>, <Tab><Tab>  
 Open a file under cursor in a new tab.
+Quickfix window is automatically opened in the new tab to help you open other Quickfix items.
 
 You can change the key mappings in your .vimrc (see |QFEnter-options|). 
 
@@ -62,25 +63,25 @@ You can change the key mappings in your .vimrc (see |QFEnter-options|).
 *g:qfenter_open_map*
 Key mappings to open a file under cursor in a previously focused window. 
 Default: >
-  let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+	let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
 <
 
 *g:qfenter_vopen_map*
-Key mappings to open a file under cursor in a new vertical split from previously focused window.
+Key mappings to open a file under cursor in a new vertical split from a previously focused window.
 Default: >
-  let g:qfenter_vopen_map = ['<Leader><CR>']
+	let g:qfenter_vopen_map = ['<Leader><CR>']
 <
 
 *g:qfenter_hopen_map*
-Key mappings to open a file under cursor in a new horizontal split from previously focused window.
+Key mappings to open a file under cursor in a new horizontal split from a previously focused window.
 Default: >
-  let g:qfenter_hopen_map = ['<Leader><Space>']
+	let g:qfenter_hopen_map = ['<Leader><Space>']
 <
 
 *g:qfenter_ttopen_map*
 Key mappings to open a file under cursor in a new tab.
 Default: >
-  let g:qfenter_ttopen_map = ['<Tab><Tab>']
+	let g:qfenter_ttopen_map = ['<Leader><Tab>', '<Tab><Tab>']
 <
 
 *g:qfenter_cc_cmd*
@@ -89,11 +90,30 @@ If you're using your custom "cc" command instead of vim's default |:cc|, you
 can register it by setting this option and make QFEnter use it.
 The option should have "##" which is converted to the line number later.
 Default: >
-  let g:qfenter_cc_cmd = '##cc'
+	let g:qfenter_cc_cmd = '##cc'
+<
+
+*g:qfenter_enable_autoquickfix*
+Enable or disable automatic opening of Quickfix window after 'open in a new tab' command.
+Default: >
+	let g:qfenter_enable_autoquickfix = 1
+<
+
+*g:qfenter_copen_modifier*
+|copen| command modifier for automatic opening of Quickfix window.
+This can be |botright|, |topleft|, etc. See |opening-window| for more modifiers.
+Default: >
+	let g:qfenter_copen_modifier = ''
 <
 
 ==============================================================================
 4. Changelog                                               *QFEnter-changelog*
+
+1.2.0                       2013/12/08
+    - now, Quickfix window is automatically opened after "open in a new tab"
+    - add options about Quickfix auto opening
+    - add one more default mapping for "open in a new tab"
+    - code refactoring
 
 1.1.1                       2013/12/06
     - change default mapping for "open a file in a new tab"

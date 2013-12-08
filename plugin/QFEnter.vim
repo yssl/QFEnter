@@ -1,10 +1,10 @@
 " File:         plugin/QFEnter.vim
-" Description:  A vim plugin for intuitive file opening from Quickfix window.
+" Description:  Open a Quickfix item in a window you choose.
 " Author:       yssl <http://github.com/yssl>
 " License:      MIT License
 
 if exists("g:loaded_qfenter") || &cp
-	finish
+	"finish
 endif
 let g:loaded_qfenter	= 1
 let s:keepcpo           = &cpo
@@ -25,11 +25,19 @@ if !exists('g:qfenter_hopen_map')
 endif
 
 if !exists('g:qfenter_ttopen_map')
-	let g:qfenter_ttopen_map = ['<Tab><Tab>']
+	let g:qfenter_ttopen_map = ['<Leader><Tab>', '<Tab><Tab>']
 endif
 
 if !exists('g:qfenter_cc_cmd')
 	let g:qfenter_cc_cmd = '##cc'
+endif
+
+if !exists('g:qfenter_enable_autoquickfix')
+	let g:qfenter_enable_autoquickfix = 1
+endif
+
+if !exists('g:qfenter_copen_modifier')
+	let g:qfenter_copen_modifier = ''
 endif
 
 " autocmd

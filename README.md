@@ -3,7 +3,7 @@
 ![qfenter](https://f.cloud.github.com/assets/5915359/1632228/bb76dc72-5774-11e3-83d1-2933b95d5b81.gif)
 
 QFEnter allows you to open a Quickfix item in a window you choose.
-You can specify the window by giving it a focus just before jumping to Quickfix window or just use a new split window or new tab.
+You can choose the window by giving it a focus just before jumping to Quickfix window.
 
 Some of default opening methods are quite inconvenient,
 
@@ -30,18 +30,19 @@ In Quickfix window,
 Open a file under cursor in a previously focused window. (\<2-LeftMouse\> means a left mouse button double click.)
 
 **\<Leader\>\<Enter\>**  
-Open a file under cursor in a new vertical split from previously focused window.
+Open a file under cursor in a new vertical split from a previously focused window.
 
 **\<Leader\>\<Space\>**  
-Open a file under cursor in a new horizontal split from previously focused window.
+Open a file under cursor in a new horizontal split from a previously focused window.
 
-**\<Tab\>\<Tab\>**  
+**\<Leader\>\<Tab\>**, **\<Tab\>\<Tab\>**  
 Open a file under cursor in a new tab.
+Quickfix window is automatically opened in the new tab to help you open other Quickfix items.
 
 You can change the key mappings in your .vimrc. The default setting is, 
 ```
 let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
 let g:qfenter_vopen_map = ['<Leader><CR>']
 let g:qfenter_hopen_map = ['<Leader><Space>']
-let g:qfenter_ttopen_map = ['<Tab><Tab>']
+let g:qfenter_ttopen_map = ['<Leader><Tab>', '<Tab><Tab>']
 ```
