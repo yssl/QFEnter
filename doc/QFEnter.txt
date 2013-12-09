@@ -25,14 +25,18 @@ Some of default opening methods are quite inconvenient,
     The file containing the error is opened **in the window above the quickfix window**.  
     `from :help quickfix` 
 
-  It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` which open a file in a previously focused window.
+  It is inconsistent with other Quickfix commands like `:cnext` and `:cprev` 
+  which open a file in a previously focused window.
 
 - You also cannot specify the window when you use `Ctrl-W <Enter>`, 
-because Vim always create a new horizontal split window above Quickfix window and open a file in it.
+because Vim always create a new horizontal split window above Quickfix window and 
+open a file in it.
 There is even no command for 'open in a new vertical split window'.
 
-They are confusing and bothers me every time, so I wrote a simple plugin to make up for these weak points.
-It's name comes from the most basic way to open a file from Quickfix window - the `<Enter>` key.
+They are confusing and bothers me every time, so I wrote a simple plugin 
+to make up for these weak points.
+It's name comes from the most basic way to open a file from Quickfix window 
+- the `<Enter>` key.
 
 ==============================================================================
 2. Usage                                                       *QFEnter-usage*
@@ -49,7 +53,7 @@ Open a file under cursor in a new vertical split from a previously focused windo
 <Leader><Space>
 Open a file under cursor in a new horizontal split from a previously focused window.
 
-<Leader><Tab>, <Tab><Tab>  
+<Leader><Tab>
 Open a file under cursor in a new tab.
 Quickfix window is automatically opened in the new tab to help you open other Quickfix items.
 
@@ -67,21 +71,23 @@ Default: >
 <
 
 *g:qfenter_vopen_map*
-Key mappings to open a file under cursor in a new vertical split from a previously focused window.
+Key mappings to open a file under cursor in a new vertical split from a previously
+focused window.
 Default: >
 	let g:qfenter_vopen_map = ['<Leader><CR>']
 <
 
 *g:qfenter_hopen_map*
-Key mappings to open a file under cursor in a new horizontal split from a previously focused window.
+Key mappings to open a file under cursor in a new horizontal split from a previously 
+focused window.
 Default: >
 	let g:qfenter_hopen_map = ['<Leader><Space>']
 <
 
-*g:qfenter_ttopen_map*
+*g:qfenter_topen_map*
 Key mappings to open a file under cursor in a new tab.
 Default: >
-	let g:qfenter_ttopen_map = ['<Leader><Tab>', '<Tab><Tab>']
+	let g:qfenter_topen_map = ['<Leader><Tab>']
 <
 
 *g:qfenter_cc_cmd*
@@ -94,20 +100,28 @@ Default: >
 <
 
 *g:qfenter_enable_autoquickfix*
-Enable or disable automatic opening of Quickfix window after 'open in a new tab' command.
+Enable or disable automatic opening of Quickfix window when 'open in a new
+tab' command is executed.
+Quickfix window is automatically opened in the new tab to help you open other Quickfix items.
+If enabled, Quickfix window is automatically opened in the new tab with its
+original size, view and position. (not correctly, but smartly determined)
 Default: >
 	let g:qfenter_enable_autoquickfix = 1
 <
 
-*g:qfenter_copen_modifier*
-|copen| command modifier for automatic opening of Quickfix window.
-This can be |botright|, |topleft|, etc. See |opening-window| for more modifiers.
-Default: >
-	let g:qfenter_copen_modifier = ''
-<
-
 ==============================================================================
 4. Changelog                                               *QFEnter-changelog*
+
+1.3.0                       2013/12/10
+
+    - improve auto quickfix open when 'open in new tab'
+        - restore view(cursor position, scroll..) of quickfix window to auto-opened quickfix window
+        - restore size of quickfix window to auto-opened quickfix window
+        - now you don't need to provide g:qfenter_copen_modifier option.
+          QFEnter now smartly determine whether the new quickfix window is botright or topleft, vertical or horizontal.
+    - change g:qfenter_ttopen_map option name to g:qfenter_topen_map (backward
+      compatibility ismaintained)
+    - remove '<Tab><Tab>' from default mapping
 
 1.2.0                       2013/12/08
     - now, Quickfix window is automatically opened after "open in a new tab"

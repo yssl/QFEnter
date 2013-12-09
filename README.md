@@ -35,7 +35,7 @@ Open a file under cursor in a new vertical split from a previously focused windo
 **\<Leader\>\<Space\>**  
 Open a file under cursor in a new horizontal split from a previously focused window.
 
-**\<Leader\>\<Tab\>**, **\<Tab\>\<Tab\>**  
+**\<Leader\>\<Tab\>**  
 Open a file under cursor in a new tab.
 Quickfix window is automatically opened in the new tab to help you open other Quickfix items.
 
@@ -44,5 +44,5 @@ You can change the key mappings in your .vimrc. The default setting is,
 let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
 let g:qfenter_vopen_map = ['<Leader><CR>']
 let g:qfenter_hopen_map = ['<Leader><Space>']
-let g:qfenter_ttopen_map = ['<Leader><Tab>', '<Tab><Tab>']
+let g:qfenter_ttopen_map = ['<Leader><Tab>']
 ```

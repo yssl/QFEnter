@@ -29,12 +29,35 @@ function! QFEnter#HOpenQFItem()
 	call s:ExecuteCC(lnumqf)
 endfunction
 
-function! QFEnter#TTOpenQFItem()
+function! QFEnter#TOpenQFItem()
 	let lnumqf = line('.')
+	let qfview = winsaveview()
+
+	let modifier = ''
+	let widthratio = winwidth(0)*&lines
+	let heightratio = winheight(0)*&columns
+	if widthratio > heightratio
+		let modifier = modifier.''
+		let qfresize = 'resize '.winheight(0)
+	else
+		let modifier = modifier.'vert'
+		let qfresize = 'vert resize '.winwidth(0)
+	endif
+
+	if winnr() <= winnr('$')/2
+		let modifier = modifier.' topleft'
+	else
+		let modifier = modifier.' botright'
+	endif
+
 	tabnew
 	call s:ExecuteCC(lnumqf)
+
 	if g:qfenter_enable_autoquickfix
-		execute g:qfenter_copen_modifier 'copen'
+		exec modifier 'copen'
+		exec qfresize
+		call winrestview(qfview)
 	endif
+
 	wincmd p
 endfunction
