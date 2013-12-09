@@ -44,5 +44,5 @@ You can change the key mappings in your .vimrc. The default setting is,
 let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
 let g:qfenter_vopen_map = ['<Leader><CR>']
 let g:qfenter_hopen_map = ['<Leader><Space>']
-let g:qfenter_ttopen_map = ['<Leader><Tab>']
+let g:qfenter_topen_map = ['<Leader><Tab>']
 ```
