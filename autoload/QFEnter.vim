@@ -23,6 +23,7 @@ endfunction
 "opencmd: 'cc', 'cn', 'cp'
 function! QFEnter#OpenQFItem(wintype, opencmd)
 	let lnumqf = line('.')
+	let qfbufnr = bufnr('%')
 
 	if a:wintype==#'open'
 		wincmd p
@@ -68,6 +69,12 @@ function! QFEnter#OpenQFItem(wintype, opencmd)
 			exec modifier 'copen'
 			exec qfresize
 			call winrestview(qfview)
+			wincmd p
 		endif
+	endif
+
+	if g:qfenter_keep_quickfixfocus==1
+		let qfwinnr = bufwinnr(qfbufnr)
+		exec qfwinnr.'wincmd w'
 	endif
 endfunction

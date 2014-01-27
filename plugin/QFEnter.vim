@@ -35,6 +35,10 @@ if !exists('g:qfenter_enable_autoquickfix')
 	let g:qfenter_enable_autoquickfix = 1
 endif
 
+if !exists('g:qfenter_keep_quickfixfocus')
+	let g:qfenter_keep_quickfixfocus = 0
+endif
+
 " autocmd
 augroup QFEnterAutoCmds
 	autocmd!
@@ -64,6 +68,7 @@ augroup END
 function! s:RegisterMapping(keymap, funcname)
 	for key in a:keymap
 		execute 'nnoremap <buffer> '.key.' :call '.a:funcname.'<CR>'
+		"execute 'vnoremap <buffer> '.key.' :normal call '.a:funcname.'<CR>'
 	endfor
 endfunction
 
