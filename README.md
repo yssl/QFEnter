@@ -1,25 +1,34 @@
 # QFEnter
 
+A normal mode example:
 ![qfenter](https://f.cloud.github.com/assets/5915359/1632228/bb76dc72-5774-11e3-83d1-2933b95d5b81.gif)
 
 QFEnter allows you to open a Quickfix item in a window you choose.
 You can choose the window by giving it a focus just before jumping to Quickfix window.
+You can also open multiple items at once by including them in the visual block.
+
+A visual mode example:
+![qfentervisualopt](https://f.cloud.github.com/assets/5915359/2006385/61c6f720-8717-11e3-806b-d0f276af3ef9.gif)
 
 ## Usage
 
 In Quickfix window,
 
 **\<Enter\>**, **\<2-LeftMouse\>**  
-Open a file under cursor in a previously focused window. (\<2-LeftMouse\> means a left mouse button double click.)
+*Normal mode* : Open an item under cursor in a previously focused window.  
+*Visual mode* : Open items in visual block in a previously focused window. As a result, the last item appears in the window. 
 
 **\<Leader\>\<Enter\>**  
-Open a file under cursor in a new vertical split from a previously focused window.
+*Normal mode* : Open an item under cursor in a new vertical split from a previously focused window.  
+*Visual mode* : Open items in visual block in a sequence of new vertical splits from a previously focused window.
 
 **\<Leader\>\<Space\>**  
-Open a file under cursor in a new horizontal split from a previously focused window.
+*Normal mode* : Open an item under cursor in a new horizontal split from a previously focused window.  
+*Visual mode* : Open items in visual block in a sequence of new horizontal splits from a previously focused window.
 
 **\<Leader\>\<Tab\>**  
-Open a file under cursor in a new tab.
+*Normal mode* : Open an item under cursor in a new tab.  
+*Visual mode* : Open items in visual block in a sequence of new tabs.  
 Quickfix window is automatically opened in the new tab to help you open other Quickfix items.
 
 You can change the key mappings in your .vimrc. The default setting is, 
