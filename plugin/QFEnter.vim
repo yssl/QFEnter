@@ -43,32 +43,27 @@ endif
 augroup QFEnterAutoCmds
 	autocmd!
 
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, 'QFEnter#OpenQFItem("open","cc")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, 'QFEnter#OpenQFItem("vert","cc")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, 'QFEnter#OpenQFItem("horz","cc")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_topen_map, 'QFEnter#OpenQFItem("tab","cc")')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, "open","cc")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, "vert","cc")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, "horz","cc")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_topen_map, "tab","cc")
 
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_cnext_map, 'QFEnter#OpenQFItem("open","cn")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcnext_map, 'QFEnter#OpenQFItem("vert","cn")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcnext_map, 'QFEnter#OpenQFItem("horz","cn")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcnext_map, 'QFEnter#OpenQFItem("tab","cn")')
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_cnext_map, "open","cn")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcnext_map, "vert","cn")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcnext_map, "horz","cn")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcnext_map, "tab","cn")
 
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_cprev_map, 'QFEnter#OpenQFItem("open","cp")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcprev_map, 'QFEnter#OpenQFItem("vert","cp")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcprev_map, 'QFEnter#OpenQFItem("horz","cp")')
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcprev_map, 'QFEnter#OpenQFItem("tab","cp")')
-
-	" backward compatibility
-	if exists('g:qfenter_ttopen_map')
-		autocmd FileType qf call s:RegisterMapping(g:qfenter_ttopen_map, 'QFEnter#OpenQFItem("tab","cc")')
-	endif
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_cprev_map, "open","cp")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcprev_map, "vert","cp")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcprev_map, "horz","cp")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcprev_map, "tab","cp")
 augroup END
 
 " functions
-function! s:RegisterMapping(keymap, funcname)
+function! s:RegisterMapping(keymap, wintype, opencmd)
 	for key in a:keymap
-		execute 'nnoremap <buffer> '.key.' :call '.a:funcname.'<CR>'
-		"execute 'vnoremap <buffer> '.key.' :normal call '.a:funcname.'<CR>'
+		execute 'nnoremap <buffer> '.key.' :call QFEnter#OpenQFItem("'.a:wintype.'","'.a:opencmd.'",0)<CR>'
+		execute 'vnoremap <buffer> '.key.' :call QFEnter#OpenQFItem("'.a:wintype.'","'.a:opencmd.'",1)<CR>'
 	endfor
 endfunction
 

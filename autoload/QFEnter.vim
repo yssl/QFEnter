@@ -19,11 +19,38 @@ function! s:ExecuteCP(count)
 	execute cp_cmd
 endfunction
 
+function! QFEnter#OpenQFItem(wintype, opencmd, isvisual)
+	let qfbufnr = bufnr('%')
+	let qflnum = line('.')
+
+	if a:isvisual
+		let vblnum2 = getpos("'>")[1]
+	endif
+
+	call s:OpenQFItem(a:wintype, a:opencmd, qflnum)
+
+	if a:isvisual
+		if qflnum==vblnum2
+			if g:qfenter_keep_quickfixfocus==1
+				let qfwinnr = bufwinnr(qfbufnr)
+				exec qfwinnr.'wincmd w'
+			endif
+		else
+			let qfwinnr = bufwinnr(qfbufnr)
+			exec qfwinnr.'wincmd w'
+		endif
+	else
+		if g:qfenter_keep_quickfixfocus==1
+			let qfwinnr = bufwinnr(qfbufnr)
+			exec qfwinnr.'wincmd w'
+		endif
+	endif
+endfunction
+
 "wintype: 'open', 'vert', 'horz', 'tab'
 "opencmd: 'cc', 'cn', 'cp'
-function! QFEnter#OpenQFItem(wintype, opencmd)
-	let lnumqf = line('.')
-	let qfbufnr = bufnr('%')
+function! s:OpenQFItem(wintype, opencmd, qflnum)
+	let lnumqf = a:qflnum
 
 	if a:wintype==#'open'
 		wincmd p
@@ -71,10 +98,5 @@ function! QFEnter#OpenQFItem(wintype, opencmd)
 			call winrestview(qfview)
 			wincmd p
 		endif
-	endif
-
-	if g:qfenter_keep_quickfixfocus==1
-		let qfwinnr = bufwinnr(qfbufnr)
-		exec qfwinnr.'wincmd w'
 	endif
 endfunction
