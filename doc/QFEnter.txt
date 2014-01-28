@@ -96,9 +96,13 @@ Default: >
 
 *g:qfenter_keep_quickfixfocus*
 If you want Quickfix window to keep focus after opening items, you can set this
-option as 1.
+option for each opening command.
 Default: >
-	let g:qfenter_keep_quickfixfocus = 0
+	let g:qfenter_keep_quickfixfocus = {
+				\'open':0,
+				\'cnext':0,
+				\'cprev':0,
+				\}
 <
 
 *g:qfenter_enable_autoquickfix*
@@ -156,6 +160,13 @@ Default: >
 
 ==============================================================================
 4. Changelog                                               *QFEnter-changelog*
+
+2.1.0                       2014/01/28
+	- subdivide g:qfenter_keep_quickfixfocus option for each command. 
+	  e.g. g:qfenter_keep_quickfixfocus.open, g:qfenter_keep_quickfixfocus.cnext,
+	  g:qfenter_keep_quickfixfocus.cprev
+	- bug fix : not updated window for already opened file when g:qfenter_keep_quickfixfocus==1
+	- thanks for mMontu!
 
 2.0.0                       2014/01/27
 	- visual mode support to open multiple Quickfix items at once

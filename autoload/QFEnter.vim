@@ -31,7 +31,8 @@ function! QFEnter#OpenQFItem(wintype, opencmd, isvisual)
 
 	if a:isvisual
 		if qflnum==vblnum2
-			if g:qfenter_keep_quickfixfocus==1
+			if g:qfenter_keep_quickfixfocus[a:opencmd]==1
+				redraw
 				let qfwinnr = bufwinnr(qfbufnr)
 				exec qfwinnr.'wincmd w'
 			endif
@@ -40,7 +41,8 @@ function! QFEnter#OpenQFItem(wintype, opencmd, isvisual)
 			exec qfwinnr.'wincmd w'
 		endif
 	else
-		if g:qfenter_keep_quickfixfocus==1
+		if g:qfenter_keep_quickfixfocus[a:opencmd]==1
+			redraw
 			let qfwinnr = bufwinnr(qfbufnr)
 			exec qfwinnr.'wincmd w'
 		endif
@@ -83,11 +85,11 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 		tabnew
 	endif
 
-	if a:opencmd==#'cc'
+	if a:opencmd==#'open'
 		call s:ExecuteCC(lnumqf)
-	elseif a:opencmd==#'cn'
+	elseif a:opencmd==#'cnext'
 		call s:ExecuteCN(lnumqf)
-	elseif a:opencmd==#'cp'
+	elseif a:opencmd==#'cprev'
 		call s:ExecuteCP(lnumqf)
 	endif
 

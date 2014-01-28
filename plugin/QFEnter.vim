@@ -36,27 +36,31 @@ if !exists('g:qfenter_enable_autoquickfix')
 endif
 
 if !exists('g:qfenter_keep_quickfixfocus')
-	let g:qfenter_keep_quickfixfocus = 0
+	let g:qfenter_keep_quickfixfocus = {
+				\'open':0,
+				\'cnext':0,
+				\'cprev':0,
+				\}
 endif
 
 " autocmd
 augroup QFEnterAutoCmds
 	autocmd!
 
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, "open","cc")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, "vert","cc")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, "horz","cc")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_topen_map, "tab","cc")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_open_map, "open","open")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vopen_map, "vert","open")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hopen_map, "horz","open")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_topen_map, "tab","open")
 
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_cnext_map, "open","cn")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcnext_map, "vert","cn")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcnext_map, "horz","cn")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcnext_map, "tab","cn")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_cnext_map, "open","cnext")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcnext_map, "vert","cnext")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcnext_map, "horz","cnext")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcnext_map, "tab","cnext")
 
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_cprev_map, "open","cp")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcprev_map, "vert","cp")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcprev_map, "horz","cp")
-	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcprev_map, "tab","cp")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_cprev_map, "open","cprev")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_vcprev_map, "vert","cprev")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_hcprev_map, "horz","cprev")
+	autocmd FileType qf call s:RegisterMapping(g:qfenter_tcprev_map, "tab","cprev")
 augroup END
 
 " functions
