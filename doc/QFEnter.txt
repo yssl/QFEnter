@@ -9,7 +9,8 @@ Contents                                                    *QFEnter-contents*
          1. Introduction ............................... |QFEnter-intro|
          2. Usage ...................................... |QFEnter-usage|
          3. Options .................................... |QFEnter-options|
-         4. Changelog .................................. |QFEnter-changelog|
+         4. |switchbuf| option ......................... |QFEnter-switchbuf|
+         5. Changelog .................................. |QFEnter-changelog|
 
 ==============================================================================
 1. Introduction                                                *QFEnter-intro*
@@ -44,19 +45,19 @@ It's name comes from the most basic way to open a file from Quickfix window
 
 In |Quickfix| window,
 
-<Enter>, <2-LeftMouse>  
+<Enter>, <2-LeftMouse>  (open)
 Normal mode : Open an item under cursor in a previously focused window.  
 Visual mode : Open items in visual block in a previously focused window. As a result, the last item appears in the window. 
 
-<Leader><Enter>
+<Leader><Enter>  (vopen)
 Normal mode : Open an item under cursor in a new vertical split from a previously focused window.  
 Visual mode : Open items in visual block in a sequence of new vertical splits from a previously focused window.
 
-<Leader><Space>
+<Leader><Space>  (hopen)
 Normal mode : Open an item under cursor in a new horizontal split from a previously focused window.  
 Visual mode : Open items in visual block in a sequence of new horizontal splits from a previously focused window.
 
-<Leader><Tab>
+<Leader><Tab>  (topen)
 Normal mode : Open an item under cursor in a new tab.  
 Visual mode : Open items in visual block in a sequence of new tabs.  
 Quickfix window is automatically opened in the new tab to help you open other Quickfix items.
@@ -159,14 +160,40 @@ Default: >
 <
 
 ==============================================================================
-4. Changelog                                               *QFEnter-changelog*
+4. |switchbuf| option                                      *QFEnter-switchbuf*
+
+You can control QFEnter's behavior with vim's |switchbuf| option when opening an item.
+|switchbuf| option can have five values; (none), useopen, usetab, split, newtab.
+
+For example, you can set the option in your .vimrc as following:
+>
+	set switchbuf=useopen
+<
+
+The defalut value is (none), meaning that:
+>
+	set switchbuf=
+<
+
+If there is no already opened window for the item you selected, 
+QFEnter opens the item with its default behavior as decribed in |QFEnter-options|.
+Otherwise, |switchbuf| option choose the window to open the item in.
+You can refer :help switchbuf for more details.
+
+==============================================================================
+5. Changelog                                               *QFEnter-changelog*
+
+2.2.0                       2014/03/17
+	- now QFEnter supports vim's 'switchbuf' option.
+	  if you change 'switchbuf' option, QFEnter adapts its behavior to the changed option.
+	- thanks to sergey-vlasov!
 
 2.1.0                       2014/01/28
 	- subdivide g:qfenter_keep_quickfixfocus option for each command. 
 	  e.g. g:qfenter_keep_quickfixfocus.open, g:qfenter_keep_quickfixfocus.cnext,
 	  g:qfenter_keep_quickfixfocus.cprev
 	- bug fix : not updated window for already opened file when g:qfenter_keep_quickfixfocus==1
-	- thanks for mMontu!
+	- thanks to mMontu!
 
 2.0.0                       2014/01/27
 	- visual mode support to open multiple Quickfix items at once

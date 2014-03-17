@@ -1,11 +1,11 @@
 # QFEnter
 
-A normal mode example:
-![qfenter](https://f.cloud.github.com/assets/5915359/1632228/bb76dc72-5774-11e3-83d1-2933b95d5b81.gif)
-
 QFEnter allows you to open a Quickfix item in a window you choose.
 You can choose the window by giving it a focus just before jumping to Quickfix window.
 You can also open multiple items at once by including them in the visual block.
+
+A normal mode example:
+![qfenter](https://f.cloud.github.com/assets/5915359/1632228/bb76dc72-5774-11e3-83d1-2933b95d5b81.gif)
 
 A visual mode example:
 ![qfentervisualopt](https://f.cloud.github.com/assets/5915359/2006385/61c6f720-8717-11e3-806b-d0f276af3ef9.gif)

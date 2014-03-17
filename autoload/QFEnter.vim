@@ -54,6 +54,7 @@ endfunction
 function! s:OpenQFItem(wintype, opencmd, qflnum)
 	let lnumqf = a:qflnum
 
+	" arrange a window or tab in which quickfix item to be opened
 	if a:wintype==#'open'
 		wincmd p
 	elseif a:wintype==#'vert'
@@ -85,6 +86,11 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 		tabnew
 	endif
 
+	" save current tab or window to check after switchbuf applied when executing cc, cn, cp commands
+	let before_tabnr = tabpagenr()
+	let before_winnr = winnr()
+
+	" execute vim quickfix open commands
 	if a:opencmd==#'open'
 		call s:ExecuteCC(lnumqf)
 	elseif a:opencmd==#'cnext'
@@ -93,6 +99,31 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 		call s:ExecuteCP(lnumqf)
 	endif
 
+	" check if switchbuf applied.
+	" if useopen or usetab are applied with new window or tab command, close the newly opened tab or window.
+	let after_tabnr = tabpagenr()
+	let after_winnr = winnr()
+	if (match(&switchbuf,'useopen')>-1 || match(&switchbuf,'usetab')>-1)
+		if a:wintype==#'tab'
+			if before_tabnr!=after_tabnr
+				call s:JumpToTab(before_tabnr)
+				call s:CloseTab(after_tabnr)
+			endif
+		elseif a:wintype==#'vert'|| a:wintype==#'horz'
+			if before_tabnr!=after_tabnr	|"when 'usetab' applied
+				call s:JumpToTab(before_tabnr)
+				call s:CloseWin(after_winnr)
+				call s:JumpToTab(after_tabnr)
+			elseif before_winnr!=after_winnr
+				call s:JumpToWin(before_winnr)
+				call s:CloseWin(after_winnr)
+			endif
+		endif
+	endif
+	"echo before_tabnr after_tabnr
+	"echo before_winnr after_winnr
+
+	" restore quickfix window when tab mode
 	if a:wintype==#'tab'
 		if g:qfenter_enable_autoquickfix
 			exec modifier 'copen'
@@ -102,3 +133,33 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 		endif
 	endif
 endfunction
+
+fun! s:CloseWin(return_winnr)
+	let prevwinnr = a:return_winnr
+	if prevwinnr > winnr()
+		let prevwinnr = prevwinnr - 1
+	endif
+
+	quit
+
+	call s:JumpToWin(prevwinnr)
+endfun
+
+fun! s:JumpToWin(winnum)
+	exec a:winnum.'wincmd w'
+endfun
+
+fun! s:CloseTab(return_tabnr)
+	let prevtabnr = a:return_tabnr
+	if prevtabnr > tabpagenr()
+		let prevtabnr = prevtabnr - 1
+	endif
+
+	tabclose
+
+	call s:JumpToTab(prevtabnr)
+endfun
+
+fun! s:JumpToTab(tabnum)
+	exec 'tabnext' a:tabnum
+endfun
