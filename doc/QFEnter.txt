@@ -185,6 +185,9 @@ You can refer :help switchbuf for more details.
 ==============================================================================
 5. Changelog                                               *QFEnter-changelog*
 
+2.2.1                       2014/03/17
+	- update document for 'switchbuf' option.
+
 2.2.0                       2014/03/17
 	- now QFEnter supports vim's 'switchbuf' option.
 	  if you change 'switchbuf' option, QFEnter adapts its behavior to the changed option.
