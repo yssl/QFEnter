@@ -163,6 +163,7 @@ Default: >
 4. |switchbuf| option                                      *QFEnter-switchbuf*
 
 You can control QFEnter's behavior with vim's |switchbuf| option when opening an item.
+When each opening command is invoked, QFEnter checks |switchbuf| option and adjusts its behavior.
 |switchbuf| option can have five values; (none), useopen, usetab, split, newtab.
 
 For example, you can set the option in your .vimrc as following:
@@ -175,8 +176,9 @@ The defalut value is (none), meaning that:
 	set switchbuf=
 <
 
-If there is no already opened window for the item you selected, 
-QFEnter opens the item with its default behavior as decribed in |QFEnter-options|.
+If there is no already opened window of the buffer for the item you selected, 
+QFEnter opens the item with its default behavior as decribed in |QFEnter-usage|.
+
 Otherwise, |switchbuf| option choose the window to open the item in.
 You can refer :help switchbuf for more details.
 
