@@ -66,8 +66,8 @@ augroup END
 " functions
 function! s:RegisterMapping(keymap, wintype, opencmd)
 	for key in a:keymap
-		execute 'nnoremap <buffer> '.key.' :call QFEnter#OpenQFItem("'.a:wintype.'","'.a:opencmd.'",0)<CR>'
-		execute 'vnoremap <buffer> '.key.' :call QFEnter#OpenQFItem("'.a:wintype.'","'.a:opencmd.'",1)<CR>'
+		execute 'nnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.a:wintype.'","'.a:opencmd.'",0)<CR>'
+		execute 'vnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.a:wintype.'","'.a:opencmd.'",1)<CR>'
 	endfor
 endfunction
 
