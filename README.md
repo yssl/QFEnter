@@ -10,6 +10,17 @@ A normal mode example:
 A visual mode example:
 ![qfentervisualopt](https://f.cloud.github.com/assets/5915359/2006385/61c6f720-8717-11e3-806b-d0f276af3ef9.gif)
 
+## Installation
+
+- Using one of plugin managers (recommended)
+    - [Vundle](https://github.com/gmarik/Vundle.vim) : Add `Bundle 'yssl/QFEnter'` to .vimrc & `:BundleInstall`
+    - [NeoBundle](https://github.com/Shougo/neobundle.vim) : Add `NeoBundle 'yssl/QFEnter'` to .vimrc & `:NeoBundleInstall`
+    - [vim-plug](https://github.com/junegunn/vim-plug) : Add `Plug 'yssl/QFEnter'` to .vimrc & `:PlugInstall`
+- Using [Pathogen](https://github.com/tpope/vim-pathogen)
+    - `cd ~/.vim/bundle; git clone https://github.com/yssl/QFEnter.git`
+- Manual install (not recommended)
+    - Download this plugin and extract it in `~/.vim/`
+
 ## Usage
 
 In Quickfix window,
