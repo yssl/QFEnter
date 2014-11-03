@@ -12,7 +12,7 @@ A visual mode example:
 
 ## Installation
 
-- Using one of plugin managers (recommended)
+- Using plugin managers (recommended)
     - [Vundle](https://github.com/gmarik/Vundle.vim) : Add `Bundle 'yssl/QFEnter'` to .vimrc & `:BundleInstall`
     - [NeoBundle](https://github.com/Shougo/neobundle.vim) : Add `NeoBundle 'yssl/QFEnter'` to .vimrc & `:NeoBundleInstall`
     - [vim-plug](https://github.com/junegunn/vim-plug) : Add `Plug 'yssl/QFEnter'` to .vimrc & `:PlugInstall`
