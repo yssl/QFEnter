@@ -11,12 +11,20 @@ endfunction
 
 function! s:ExecuteCN(count)
 	let cn_cmd = g:qfenter_cn_cmd
-	execute cn_cmd
+	try
+		execute cn_cmd
+	catch E553
+		echo 'QFEnter: cnext: No more items'
+	endtry
 endfunction
 
 function! s:ExecuteCP(count)
 	let cp_cmd = g:qfenter_cp_cmd
-	execute cp_cmd
+	try
+		execute cp_cmd
+	catch E553
+		echo 'QFEnter: cprev: No more items'
+	endtry
 endfunction
 
 function! QFEnter#OpenQFItem(wintype, opencmd, isvisual)
