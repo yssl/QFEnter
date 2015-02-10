@@ -94,7 +94,8 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 		tabnew
 	endif
 
-	" save current tab or window to check after switchbuf applied when executing cc, cn, cp commands
+	" save current tab or window to check after switchbuf applied when
+	" executing cc, cn, cp commands
 	let before_tabnr = tabpagenr()
 	let before_winnr = winnr()
 
@@ -108,7 +109,8 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 	endif
 
 	" check if switchbuf applied.
-	" if useopen or usetab are applied with new window or tab command, close the newly opened tab or window.
+	" if useopen or usetab are applied with new window or tab command, close
+	" the newly opened tab or window.
 	let after_tabnr = tabpagenr()
 	let after_winnr = winnr()
 	if (match(&switchbuf,'useopen')>-1 || match(&switchbuf,'usetab')>-1)
@@ -171,3 +173,5 @@ endfun
 fun! s:JumpToTab(tabnum)
 	exec 'tabnext' a:tabnum
 endfun
+
+" vim:set noet sw=4 sts=4 ts=4 tw=78:
