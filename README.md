@@ -52,11 +52,19 @@ In the quickfix window,
                 can be changed with the `g:qfenter_enable_autoquickfix` option.
 
 You can change the key mappings in your .vimrc. The default setting is, 
-```
+```vim
 let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
 let g:qfenter_vopen_map = ['<Leader><CR>']
 let g:qfenter_hopen_map = ['<Leader><Space>']
 let g:qfenter_topen_map = ['<Leader><Tab>']
+```
+
+If you're a [CtrlP] user, for instance, you might like these for familiarity:
+
+```vim
+let g:qfenter_vopen_map = ['<C-v>']
+let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_topen_map = ['<C-t>']
 ```
 
 ## Motivation
@@ -88,5 +96,6 @@ a file from the quickfix window -- the `<Enter>` key.
 [NeoBundle]: https://github.com/Shougo/neobundle.vim
 [vim-plug]: https://github.com/junegunn/vim-plug
 [Pathogen]: https://github.com/tpope/vim-pathogen
+[CtrlP]: https://github.com/ctrlpvim/ctrlp.vim
 
 <!-- vim:set et sw=4 ts=4 tw=78: -->
