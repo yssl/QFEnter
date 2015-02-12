@@ -74,3 +74,5 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""
 let &cpo= s:keepcpo
 unlet s:keepcpo
+
+" vim:set noet sw=4 sts=4 ts=4 tw=78:
