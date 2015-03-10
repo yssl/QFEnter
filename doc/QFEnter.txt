@@ -71,7 +71,7 @@ Normal mode : Open an item under cursor in a new tab.
 Visual mode : Open items in visual selection in a sequence of new tabs.
               By default, the |quickfix| window is automatically opened in the
               new tab to help you open other Quickfix items. This behavior
-              can be changed with the *g:qfenter_enable_autoquickfix* option.
+              can be changed with the |g:qfenter_enable_autoquickfix| option.
 
 You can change these key mappings in your .vimrc (see |QFEnter-options|).
 
