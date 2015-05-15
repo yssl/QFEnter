@@ -5,9 +5,30 @@
 
 " functions
 function! s:ExecuteCC(lnumqf)
-	let cc_cmd = substitute(g:qfenter_cc_cmd, '##', a:lnumqf, "")
+	if s:isLocalList()
+		let cmd = g:qfenter_ll_cmd
+	else
+		let cmd = g:qfenter_cc_cmd
+	endif
+	let cc_cmd = substitute(cmd, '##', a:lnumqf, "")
 	execute cc_cmd
 endfunction
+
+fun! s:isLocalList()
+	sil let file = s:File()
+	if stridx(file, 'Quickfix') != -1
+		return 0
+	else 
+		return 1
+	endif
+endfun
+
+fun! s:File()
+	redir => file
+	f
+	redir END
+	return file
+endfun
 
 function! s:ExecuteCN(count)
 	let cn_cmd = g:qfenter_cn_cmd
