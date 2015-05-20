@@ -15,19 +15,11 @@ function! s:ExecuteCC(lnumqf)
 endfunction
 
 fun! s:isLocalList()
-	sil let file = s:File()
-	if stridx(file, 'Quickfix') != -1
-		return 0
-	else 
+	if len(getloclist(0)) > 0
 		return 1
+	else 
+		return 0
 	endif
-endfun
-
-fun! s:File()
-	redir => file
-	f
-	redir END
-	return file
 endfun
 
 function! s:ExecuteCN(count)
