@@ -28,6 +28,7 @@ if !exists('g:qfenter_hcprev_map') | let g:qfenter_hcprev_map = [] | endif
 if !exists('g:qfenter_tcprev_map') | let g:qfenter_tcprev_map = [] | endif
 
 if !exists('g:qfenter_cc_cmd') | let g:qfenter_cc_cmd = '##cc' | endif
+if !exists('g:qfenter_ll_cmd') | let g:qfenter_ll_cmd = '##ll' | endif
 if !exists('g:qfenter_cn_cmd') | let g:qfenter_cn_cmd = 'cn'   | endif
 if !exists('g:qfenter_cp_cmd') | let g:qfenter_cp_cmd = 'cp'   | endif
 
