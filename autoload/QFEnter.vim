@@ -4,8 +4,8 @@
 " License:      MIT License
 
 " functions
-function! s:ExecuteCC(lnumqf)
-	if s:isLocalList()
+function! s:ExecuteCC(lnumqf, isloclist)
+	if a:isloclist
 		let cmd = g:qfenter_ll_cmd
 	else
 		let cmd = g:qfenter_cc_cmd
@@ -13,14 +13,6 @@ function! s:ExecuteCC(lnumqf)
 	let cc_cmd = substitute(cmd, '##', a:lnumqf, "")
 	execute cc_cmd
 endfunction
-
-fun! s:isLocalList()
-	if len(getloclist(0)) > 0
-		return 1
-	else 
-		return 0
-	endif
-endfun
 
 function! s:ExecuteCN(count)
 	let cn_cmd = g:qfenter_cn_cmd
@@ -75,6 +67,12 @@ endfunction
 function! s:OpenQFItem(wintype, opencmd, qflnum)
 	let lnumqf = a:qflnum
 
+	if len(getloclist(0)) > 0
+		let isloclist = 1
+	else
+		let isloclist = 0
+	endif
+
 	" arrange a window or tab in which quickfix item to be opened
 	if a:wintype==#'open'
 		wincmd p
@@ -114,7 +112,7 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 
 	" execute vim quickfix open commands
 	if a:opencmd==#'open'
-		call s:ExecuteCC(lnumqf)
+		call s:ExecuteCC(lnumqf, isloclist)
 	elseif a:opencmd==#'cnext'
 		call s:ExecuteCN(lnumqf)
 	elseif a:opencmd==#'cprev'
