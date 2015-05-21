@@ -15,10 +15,10 @@ Contents                                                    *QFEnter-contents*
 ==============================================================================
 1. Introduction                                                *QFEnter-intro*
 
-QFEnter allows you to open items from the |quickfix| list wherever you wish.
+QFEnter allows you to open items from the |quickfix| or location list wherever you wish.
 
 You can set a target window by giving it focus just before jumping to the
-|quickfix| window, or you can open items in new splits, vsplits, and tabs.
+|quickfix| (or location list) window, or you can open items in new splits, vsplits, and tabs.
 You can even open multiple items at once by visual selection!
 
 Vim's default means of opening items from the |quickfix| list are limited and
@@ -47,7 +47,7 @@ a file from the |quickfix| window -- the <Enter> key.
 ==============================================================================
 2. Usage                                                       *QFEnter-usage*
 
-In the |quickfix| window,
+In the quickfix (or location list) window,
 
 <Enter>, <2-LeftMouse>  (open)
 Normal mode : Open an item under cursor in the previously focused window.
@@ -78,7 +78,7 @@ You can change these key mappings in your .vimrc (see |QFEnter-options|).
 ==============================================================================
 3. Options                                                   *QFEnter-options*
 
-|QFEnter| mappings are enabled only in |Quickfix| window.
+|QFEnter| mappings are enabled only in |quickfix| (or location list) window.
 
 *g:qfenter_open_map*
 Key mappings to open items under cursor or in visual block in a previously
@@ -108,7 +108,7 @@ Default: >
 <
 
 *g:qfenter_keep_quickfixfocus*
-If you want Quickfix window to keep focus after opening items, you can set this
+If you want quickfix (or location list) window to keep focus after opening items, you can set this
 option for each opening command.
 Default: >
     let g:qfenter_keep_quickfixfocus = {
@@ -119,10 +119,10 @@ Default: >
 <
 
 *g:qfenter_enable_autoquickfix*
-Enable or disable automatic opening of Quickfix window when 'open in a new
+Enable or disable automatic opening of quickfix window when 'open in a new
 tab' command is executed.
-If enabled, Quickfix window is automatically opened in the new tab with its
-original size, view and position to help you open other Quickfix items.
+If enabled, quickfix window is automatically opened in the new tab with its
+original size, view and position to help you open other quickfix items.
 (not correctly, but smartly determined)
 Default: >
     let g:qfenter_enable_autoquickfix = 1

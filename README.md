@@ -1,10 +1,10 @@
 # QFEnter
 
-QFEnter allows you to open items from Vim's quickfix list wherever you wish.
+QFEnter allows you to open items from Vim's quickfix or location list wherever you wish.
 
 You can set a target window by giving it focus just before jumping to the
-quickfix window, or you can open items in new splits, vsplits, and tabs.  You
-can even open multiple items at once by visual selection!
+quickfix (or location list) window , or you can open items in new splits, vsplits, and tabs.
+You can even open multiple items at once by visual selection!
 
 A normal mode example:
 ![qfenter](https://f.cloud.github.com/assets/5915359/1632228/bb76dc72-5774-11e3-83d1-2933b95d5b81.gif)
@@ -25,7 +25,7 @@ A visual mode example:
 
 ## Usage
 
-In the quickfix window,
+In the quickfix (or location list) window,
 
 **\<Enter\>**, **\<2-LeftMouse\>**  
 *Normal mode* : Open an item under cursor in the previously focused window.  
