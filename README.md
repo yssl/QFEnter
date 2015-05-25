@@ -15,7 +15,7 @@ A visual mode example:
 ## Installation
 
 - Using plugin managers (recommended)
-    - [Vundle] : Add `Bundle 'yssl/QFEnter'` to .vimrc & `:BundleInstall`
+    - [Vundle] : Add `Plugin 'yssl/QFEnter'` to .vimrc & `:PluginInstall`
     - [NeoBundle] : Add `NeoBundle 'yssl/QFEnter'` to .vimrc & `:NeoBundleInstall`
     - [vim-plug] : Add `Plug 'yssl/QFEnter'` to .vimrc & `:PlugInstall`
 - Using [Pathogen]
