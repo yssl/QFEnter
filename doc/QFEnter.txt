@@ -198,6 +198,12 @@ You can refer :help switchbuf for more details.
 ==============================================================================
 5. Changelog                                               *QFEnter-changelog*
 
+2.2.2                       2015/05/26
+    - Avoid messages when mappings are executed. (thanks to mMontu)
+    - Catch E553 of cn & cp commands
+    - Modelines, clean up vimdoc formatting and edit text (thanks to ches)
+    - Support location list (thanks to feix760)
+    
 2.2.1                       2014/03/17
     - update document for 'switchbuf' option.
 
