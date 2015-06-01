@@ -166,10 +166,13 @@ Default: >
 *g:qfenter_cn_cmd*
 *g:qfenter_cp_cmd*
 If you're using your custom "cn" or "cp" command instead of vim's default
-|:cn| or |:cp|, you can register them by setting these options.
+|:cn| or |:cp| (or the equivalent for the location list, |:lne| or |:lp|), you
+can register them by setting these options.
 Default: >
     let g:qfenter_cn_cmd = 'cn'
     let g:qfenter_cp_cmd = 'cp'
+    let g:qfenter_lne_cmd = 'lne'
+    let g:qfenter_lp_cmd = 'lp'
 <
 
 ==============================================================================

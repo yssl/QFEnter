@@ -14,19 +14,27 @@ function! s:ExecuteCC(lnumqf, isloclist)
 	execute cc_cmd
 endfunction
 
-function! s:ExecuteCN(count)
-	let cn_cmd = g:qfenter_cn_cmd
+function! s:ExecuteCN(count, isloclist)
+	if a:isloclist
+		let cmd = g:qfenter_lne_cmd
+	else
+		let cmd = g:qfenter_cn_cmd
+	endif
 	try
-		execute cn_cmd
+		execute cmd
 	catch E553
 		echo 'QFEnter: cnext: No more items'
 	endtry
 endfunction
 
-function! s:ExecuteCP(count)
-	let cp_cmd = g:qfenter_cp_cmd
+function! s:ExecuteCP(count, isloclist)
+	if a:isloclist
+		let cmd = g:qfenter_lp_cmd
+	else
+		let cmd = g:qfenter_cp_cmd
+	endif
 	try
-		execute cp_cmd
+		execute cmd
 	catch E553
 		echo 'QFEnter: cprev: No more items'
 	endtry
@@ -114,9 +122,9 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 	if a:opencmd==#'open'
 		call s:ExecuteCC(lnumqf, isloclist)
 	elseif a:opencmd==#'cnext'
-		call s:ExecuteCN(lnumqf)
+		call s:ExecuteCN(lnumqf, isloclist)
 	elseif a:opencmd==#'cprev'
-		call s:ExecuteCP(lnumqf)
+		call s:ExecuteCP(lnumqf, isloclist)
 	endif
 
 	" check if switchbuf applied.
