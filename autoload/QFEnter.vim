@@ -68,6 +68,106 @@ function! QFEnter#OpenQFItem(wintype, opencmd, keepfocus, isvisual)
 			exec qfwinnr.'wincmd w'
 		endif
 	endif
+
+	" notification message for deprecated global variables
+	redraw
+	if a:wintype==#'o' && a:opencmd==#'c'
+		if exists('g:qfenter_open_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.open && g:qfenter_keep_quickfixfocus.open == 1
+				echom "QFEnter: 'g:qfenter_open_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.open_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_open_map' is deprecated. Use 'g:qfenter_keymap.open' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'o' && a:opencmd==#'n'
+		if exists('g:qfenter_cnext_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cnext && g:qfenter_keep_quickfixfocus.cnext == 1
+				echom "QFEnter: 'g:qfenter_cnext_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.cnext_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_cnext_map' is deprecated. Use 'g:qfenter_keymap.cnext' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'o' && a:opencmd==#'p'
+		if exists('g:qfenter_cprev_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cprev && g:qfenter_keep_quickfixfocus.cprev == 1
+				echom "QFEnter: 'g:qfenter_cprev_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.cprev_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_cprev_map' is deprecated. Use 'g:qfenter_keymap.cprev' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'v' && a:opencmd==#'c'
+		if exists('g:qfenter_vopen_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.open && g:qfenter_keep_quickfixfocus.open == 1
+				echom "QFEnter: 'g:qfenter_vopen_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.vopen_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_vopen_map' is deprecated. Use 'g:qfenter_keymap.vopen' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'v' && a:opencmd==#'n'
+		if exists('g:qfenter_vcnext_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cnext && g:qfenter_keep_quickfixfocus.cnext == 1
+				echom "QFEnter: 'g:qfenter_vcnext_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.vcnext_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_vcnext_map' is deprecated. Use 'g:qfenter_keymap.vcnext' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'v' && a:opencmd==#'p'
+		if exists('g:qfenter_vcprev_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cprev && g:qfenter_keep_quickfixfocus.cprev == 1
+				echom "QFEnter: 'g:qfenter_vcprev_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.vcprev_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_vcprev_map' is deprecated. Use 'g:qfenter_keymap.vcprev' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'h' && a:opencmd==#'c'
+		if exists('g:qfenter_hopen_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.open && g:qfenter_keep_quickfixfocus.open == 1
+				echom "QFEnter: 'g:qfenter_hopen_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.hopen_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_hopen_map' is deprecated. Use 'g:qfenter_keymap.hopen' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'h' && a:opencmd==#'n'
+		if exists('g:qfenter_hcnext_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cnext && g:qfenter_keep_quickfixfocus.cnext == 1
+				echom "QFEnter: 'g:qfenter_hcnext_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.hcnext_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_hcnext_map' is deprecated. Use 'g:qfenter_keymap.hcnext' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'h' && a:opencmd==#'p'
+		if exists('g:qfenter_hcprev_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cprev && g:qfenter_keep_quickfixfocus.cprev == 1
+				echom "QFEnter: 'g:qfenter_hcprev_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.hcprev_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_hcprev_map' is deprecated. Use 'g:qfenter_keymap.hcprev' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'t' && a:opencmd==#'c'
+		if exists('g:qfenter_topen_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.open && g:qfenter_keep_quickfixfocus.open == 1
+				echom "QFEnter: 'g:qfenter_topen_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.topen_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_topen_map' is deprecated. Use 'g:qfenter_keymap.topen' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'t' && a:opencmd==#'n'
+		if exists('g:qfenter_tcnext_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cnext && g:qfenter_keep_quickfixfocus.cnext == 1
+				echom "QFEnter: 'g:qfenter_tcnext_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.tcnext_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_tcnext_map' is deprecated. Use 'g:qfenter_keymap.tcnext' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	elseif a:wintype==#'t' && a:opencmd==#'p'
+		if exists('g:qfenter_tcprev_map')
+			if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cprev && g:qfenter_keep_quickfixfocus.cprev == 1
+				echom "QFEnter: 'g:qfenter_tcprev_map' and 'g:qfenter_keep_quickfixfocus' are deprecated. Use 'g:qfenter_keymap.tcprev_keep' instead. Please refer :help g:qfenter_keymap."
+			else
+				echom "QFEnter: 'g:qfenter_tcprev_map' is deprecated. Use 'g:qfenter_keymap.tcprev' instead. Please refer :help g:qfenter_keymap."
+			endif
+		endif
+	endif
 endfunction
 
 "wintype: 'o', 'v', 'h', 't'
