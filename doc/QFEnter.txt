@@ -10,7 +10,8 @@ Contents                                                    *QFEnter-contents*
         2. Usage ...................................... |QFEnter-usage|
         3. Options .................................... |QFEnter-options|
         4. |switchbuf| option ........................... |QFEnter-switchbuf|
-        5. Changelog .................................. |QFEnter-changelog|
+        5. Deprecated Commands & Options .............. |QFEnter-deprecated|
+        6. Changelog .................................. |QFEnter-changelog|
 
 ==============================================================================
 1. Introduction                                                *QFEnter-intro*
@@ -80,42 +81,52 @@ You can change these key mappings in your .vimrc (see |QFEnter-options|).
 
 |QFEnter| mappings are enabled only in |quickfix| (or location list) window.
 
-*g:qfenter_open_map*
-Key mappings to open items under cursor or in visual block in a previously
-focused window.
-Default: >
-    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
-<
+*g:qfenter_keymap*
+Customizable key mapping table for all 24 item-opening cases.
+It is a vimscript dictionary which has 'command' (as key) and 'key list'
+(as value) pairs.
 
-*g:qfenter_vopen_map*
-Key mappings to open items under cursor or in visual block in new vertical
-splits from a previously focused window.
-Default: >
-    let g:qfenter_vopen_map = ['<Leader><CR>']
-<
+Available commands are:
 
-*g:qfenter_hopen_map*
-Key mappings to open items under cursor or in visual block in new horizontal
-splits from a previously focused window.
-Default: >
-    let g:qfenter_hopen_map = ['<Leader><Space>']
-<
+'open':   Open items under cursor or in visual block in a previously focused window.
+'vopen':  Open items under cursor or in visual block in new vertical splits from a previously focused window.
+'hopen':  Open items under cursor or in visual block in new horizontal splits from a previously focused window.
+'topen':  Open items under cursor or in visual block in new tabs.
 
-*g:qfenter_topen_map*
-Key mappings to open items under cursor or in visual block in new tabs.
-Default: >
-    let g:qfenter_topen_map = ['<Leader><Tab>']
-<
+'cnext':  Open items using |:cnext| command in a previously focused window.
+'vcnext': Open items using |:cnext| command in new vertical splits from a previously focused window.
+'hcnext': Open items using |:cnext| command in new horizontal splits from a previously focused window.
+'tcnext': Open items using |:cnext| command in new tabs.
 
-*g:qfenter_keep_quickfixfocus*
-If you want quickfix (or location list) window to keep focus after opening items, you can set this
-option for each opening command.
+'cprev':  Open items using |:cprev| command in a previously focused window.
+'vcprev': Open items using |:cprev| command in new vertical splits from a previously focused window.
+'hcprev': Open items using |:cprev| command in new horizontal splits from a previously focused window.
+'tcprev': Open items using |:cprev| command in new tabs.
+
+'open_keep':   Same to 'open', but quickfix (or location list) window keeps focus after opening items.
+'vopen_keep':  Same to 'vopen', but quickfix (or location list) window keeps focus after opening items.
+'hopen_keep':  Same to 'hopen', but quickfix (or location list) window keeps focus after opening items.
+'topen_keep':  Same to 'topen', but quickfix (or location list) window keeps focus after opening items.
+
+'cnext_keep':  Same to 'cnext', but quickfix (or location list) window keeps focus after opening items.
+'vcnext_keep': Same to 'vcnext', but quickfix (or location list) window keeps focus after opening items.
+'hcnext_keep': Same to 'hcnext', but quickfix (or location list) window keeps focus after opening items.
+'tcnext_keep': Same to 'tcnext', but quickfix (or location list) window keeps focus after opening items.
+
+'cprev_keep':  Same to 'cprev', but quickfix (or location list) window keeps focus after opening items.
+'vcprev_keep': Same to 'vcprev', but quickfix (or location list) window keeps focus after opening items.
+'hcprev_keep': Same to 'hcprev', but quickfix (or location list) window keeps focus after opening items.
+'tcprev_keep': Same to 'tcprev', but quickfix (or location list) window keeps focus after opening items.
+
+Note that |g:qfenter_keymap| should be defined as an empty dictionary 
+in your .vimrc to customize key mappings.  >
+    let g:qfenter_keymap = {}
+<
 Default: >
-    let g:qfenter_keep_quickfixfocus = {
-          \'open':0,
-          \'cnext':0,
-          \'cprev':0,
-          \}
+    let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
+    let g:qfenter_keymap.vopen = ['<Leader><CR>']
+    let g:qfenter_keymap.hopen = ['<Leader><Space>']
+    let g:qfenter_keymap.topen = ['<Leader><Tab>']
 <
 
 *g:qfenter_enable_autoquickfix*
@@ -129,42 +140,22 @@ Default: >
 <
 
 *g:qfenter_cc_cmd*
-QFEnter internally uses |:cc| command.
-If you're using your custom "cc" command instead of vim's default |:cc|, you
-can register it by setting this option and make QFEnter use it.
+*g:qfenter_ll_cmd*
+QFEnter internally uses |:cc| (or |:ll| for the location list) command
+to open an item under cursor.
+If you're using your custom "cc" (or "ll") command instead of vim's 
+default |:cc| (or |:ll|), you can register it by setting this option 
+and make QFEnter use it.
 The option should have "##" which is converted to the line number later.
 Default: >
     let g:qfenter_cc_cmd = '##cc'
-<
-
-*g:qfenter_cnext_map*
-*g:qfenter_vcnext_map*
-*g:qfenter_hcnext_map*
-*g:qfenter_tcnext_map*
-Key mappings to open items using the :cnext command.
-Disabled by default.
-Default: >
-    let g:qfenter_cnext_map = []
-    let g:qfenter_vcnext_map = []
-    let g:qfenter_hcnext_map = []
-    let g:qfenter_tcnext_map = []
-<
-
-*g:qfenter_cprev_map*
-*g:qfenter_vcprev_map*
-*g:qfenter_hcprev_map*
-*g:qfenter_tcprev_map*
-Key mappings to open items using the :cprev command.
-Disabled by default.
-Default: >
-    let g:qfenter_cprev_map = []
-    let g:qfenter_vcprev_map = []
-    let g:qfenter_hcprev_map = []
-    let g:qfenter_tcprev_map = []
+    let g:qfenter_ll_cmd = '##ll'
 <
 
 *g:qfenter_cn_cmd*
+*g:qfenter_lne_cmd*
 *g:qfenter_cp_cmd*
+*g:qfenter_lp_cmd*
 If you're using your custom "cn" or "cp" command instead of vim's default
 |:cn| or |:cp| (or the equivalent for the location list, |:lne| or |:lp|), you
 can register them by setting these options.
@@ -199,7 +190,83 @@ Otherwise, |switchbuf| option choose the window to open the item in.
 You can refer :help switchbuf for more details.
 
 ==============================================================================
-5. Changelog                                               *QFEnter-changelog*
+5. Deprecated Commands & Options                          *QFEnter-deprecated*
+
+Those commands are deprecated since version 2.3.0 and are supposed to be removed
+in version 2.4.0.
+Update those old key-mapping global variables and |g:qfenter_keep_quickfixfocus| 
+in your .vimrc with new commands of |g:qfenter_keymap| and their corresponding
+key maps.
+
+*g:qfenter_open_map*
+Key mappings to open items under cursor or in visual block in a previously
+focused window.
+Default: >
+    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
+<
+
+*g:qfenter_vopen_map*
+Key mappings to open items under cursor or in visual block in new vertical
+splits from a previously focused window.
+Default: >
+    let g:qfenter_vopen_map = ['<Leader><CR>']
+<
+
+*g:qfenter_hopen_map*
+Key mappings to open items under cursor or in visual block in new horizontal
+splits from a previously focused window.
+Default: >
+    let g:qfenter_hopen_map = ['<Leader><Space>']
+<
+
+*g:qfenter_topen_map*
+Key mappings to open items under cursor or in visual block in new tabs.
+Default: >
+    let g:qfenter_topen_map = ['<Leader><Tab>']
+<
+
+*g:qfenter_cnext_map*
+*g:qfenter_vcnext_map*
+*g:qfenter_hcnext_map*
+*g:qfenter_tcnext_map*
+Key mappings to open items using the :cnext command.
+Disabled by default.
+Default: >
+    let g:qfenter_cnext_map = []
+    let g:qfenter_vcnext_map = []
+    let g:qfenter_hcnext_map = []
+    let g:qfenter_tcnext_map = []
+<
+
+*g:qfenter_cprev_map*
+*g:qfenter_vcprev_map*
+*g:qfenter_hcprev_map*
+*g:qfenter_tcprev_map*
+Key mappings to open items using the :cprev command.
+Disabled by default.
+Default: >
+    let g:qfenter_cprev_map = []
+    let g:qfenter_vcprev_map = []
+    let g:qfenter_hcprev_map = []
+    let g:qfenter_tcprev_map = []
+<
+
+*g:qfenter_keep_quickfixfocus*
+If you want quickfix (or location list) window to keep focus after opening items, you can set this
+option for each opening command.
+Default: >
+    let g:qfenter_keep_quickfixfocus = {
+          \'open':0,
+          \'cnext':0,
+          \'cprev':0,
+          \}
+<
+
+==============================================================================
+6. Changelog                                               *QFEnter-changelog*
+
+2.3.0                       2017/02/28
+    - Key mapping setup has totally changed for more flexible customizing.
 
 2.2.2                       2015/05/26
     - Avoid messages when mappings are executed. (thanks to mMontu)

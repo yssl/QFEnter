@@ -53,18 +53,20 @@ In the quickfix (or location list) window,
 
 You can change the key mappings in your .vimrc. The default setting is, 
 ```vim
-let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
-let g:qfenter_vopen_map = ['<Leader><CR>']
-let g:qfenter_hopen_map = ['<Leader><Space>']
-let g:qfenter_topen_map = ['<Leader><Tab>']
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
+let g:qfenter_keymap.vopen = ['<Leader><CR>']
+let g:qfenter_keymap.hopen = ['<Leader><Space>']
+let g:qfenter_keymap.topen = ['<Leader><Tab>']
 ```
 
 If you're a [CtrlP] user, for instance, you might like these for familiarity:
 
 ```vim
-let g:qfenter_vopen_map = ['<C-v>']
-let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
-let g:qfenter_topen_map = ['<C-t>']
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
 ```
 
 ## Motivation
@@ -77,7 +79,7 @@ inconvenient:
   > Hitting the \<Enter\> key or double-clicking the mouse on a line has the
   > same effect. The file containing the error is opened **in the window above
   > the quickfix window**.
-  > *— from `:help quickfix`* 
+  > *-- from `:help quickfix`*
 
   It is inconsistent with other Quickfix commands like `:cnext` and `:cprev`
   which open a file in a previously focused window.
