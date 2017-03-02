@@ -51,6 +51,8 @@ In the quickfix (or location list) window,
                 new tab to help you open other quickfix items. This behavior
                 can be changed with the `g:qfenter_enable_autoquickfix` option.
 
+## Customization
+
 You can change the key mappings in your .vimrc. The default setting is, 
 ```vim
 let g:qfenter_keymap = {}
@@ -67,6 +69,46 @@ let g:qfenter_keymap = {}
 let g:qfenter_keymap.vopen = ['<C-v>']
 let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
 let g:qfenter_keymap.topen = ['<C-t>']
+```
+
+Supported commands (such as open or vopen in above examples) are:
+
+| Commands                   | Meaning      |
+| -------------------------- | -------------------------|
+| **open**                     | Open items under cursor or in visual block in a previously focused window.|
+| **vopen**                    | Open items under cursor or in visual block in new vertical splits from a previously focused window.|
+| **hopen**                    | Open items under cursor or in visual block in new horizontal splits from a previously focused window.|
+| **topen**                    | Open items under cursor or in visual block in new tabs.|
+| | |
+| **cnext**                    | Open items using `:cnext` command in a previously focused window.|
+| **vcnext**                   | Open items using `:cnext` command in new vertical splits from a previously focused window.|
+| **hcnext**                   | Open items using `:cnext` command in new horizontal splits from a previously focused window.|
+| **tcnext**                   | Open items using `:cnext` command in new tabs.|
+| | |
+| **cprev**                    | Open items using `:cprev` command in a previously focused window.|
+| **vcprev**                   | Open items using `:cprev` command in new vertical splits from a previously focused window.|
+| **hcprev**                   | Open items using `:cprev` command in new horizontal splits from a previously focused window.|
+| **tcprev**                   | Open items using `:cprev` command in new tabs.|
+| | |
+| **open_keep**                | Same to **open**, but quickfix (or location list) window keeps focus after opening items.|
+| **vopen_keep**               | Same to **vopen**, but quickfix (or location list) window keeps focus after opening items.|
+| **hopen_keep**               | Same to **hopen**, but quickfix (or location list) window keeps focus after opening items.|
+| **topen_keep**               | Same to **topen**, but quickfix (or location list) window keeps focus after opening items.|
+| | |
+| **cnext_keep**               | Same to **cnext**, but quickfix (or location list) window keeps focus after opening items.|
+| **vcnext_keep**              | Same to **vcnext**, but quickfix (or location list) window keeps focus after opening items.|
+| **hcnext_keep**              | Same to **hcnext**, but quickfix (or location list) window keeps focus after opening items.|
+| **tcnext_keep**              | Same to **tcnext**, but quickfix (or location list) window keeps focus after opening items.|
+| | |
+| **cprev_keep**               | Same to **cprev**, but quickfix (or location list) window keeps focus after opening items.|
+| **vcprev_keep**              | Same to **vcprev**, but quickfix (or location list) window keeps focus after opening items.|
+| **hcprev_keep**              | Same to **hcprev**, but quickfix (or location list) window keeps focus after opening items.|
+| **tcprev_keep**              | Same to **tcprev**, but quickfix (or location list) window keeps focus after opening items.|
+
+For example, to open a next quickfix item in a previously focused window while keeping focus in the quickfix window by typing `<Leader>a`, you can use these:
+```vim
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.cnext_keep = ['<Leader>a']
 ```
 
 ## Motivation

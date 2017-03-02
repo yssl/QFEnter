@@ -86,7 +86,13 @@ Customizable key mapping table for all 24 item-opening cases.
 It is a vimscript dictionary which has 'command' (as key) and 'key list'
 (as value) pairs.
 
-Available commands are:
+Default: >
+    let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
+    let g:qfenter_keymap.vopen = ['<Leader><CR>']
+    let g:qfenter_keymap.hopen = ['<Leader><Space>']
+    let g:qfenter_keymap.topen = ['<Leader><Tab>']
+<
+Supported commands are:
 
 'open':   Open items under cursor or in visual block in a previously focused window.
 'vopen':  Open items under cursor or in visual block in new vertical splits from a previously focused window.
@@ -122,11 +128,9 @@ Note that |g:qfenter_keymap| should be defined as an empty dictionary
 in your .vimrc to customize key mappings.  >
     let g:qfenter_keymap = {}
 <
-Default: >
-    let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
-    let g:qfenter_keymap.vopen = ['<Leader><CR>']
-    let g:qfenter_keymap.hopen = ['<Leader><Space>']
-    let g:qfenter_keymap.topen = ['<Leader><Tab>']
+For example, to open a next quickfix item in a previously focused window while keeping focus in the quickfix window by typing <Leader>a, you can use these:   >
+    let g:qfenter_keymap = {}
+    let g:qfenter_keymap.cnext_keep = ['<Leader>a']
 <
 
 *g:qfenter_enable_autoquickfix*
