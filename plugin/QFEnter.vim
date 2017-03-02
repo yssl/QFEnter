@@ -83,7 +83,7 @@ if !exists('g:qfenter_lp_cmd')  | let g:qfenter_lp_cmd = 'lp'   | endif
 			"\'cnext':0,
 			"\'cprev':0,
 			"\}
-if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.open && g:qfenter_keep_quickfixfocus.open == 1
+if exists('g:qfenter_keep_quickfixfocus') && has_key(g:qfenter_keep_quickfixfocus, 'open') && g:qfenter_keep_quickfixfocus.open == 1
 	if exists('g:qfenter_open_map')  | let g:qfenter_keymap.open_keep  = g:qfenter_open_map  | endif
 	if exists('g:qfenter_vopen_map') | let g:qfenter_keymap.vopen_keep = g:qfenter_vopen_map | endif
 	if exists('g:qfenter_hopen_map') | let g:qfenter_keymap.hopen_keep = g:qfenter_hopen_map | endif
@@ -95,7 +95,7 @@ else
 	if exists('g:qfenter_topen_map') | let g:qfenter_keymap.topen = g:qfenter_topen_map | endif
 endif
 
-if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cnext && g:qfenter_keep_quickfixfocus.cnext == 1
+if exists('g:qfenter_keep_quickfixfocus') && has_key(g:qfenter_keep_quickfixfocus, 'cnext') && g:qfenter_keep_quickfixfocus.cnext == 1
 	if exists('g:qfenter_cnext_map')  | let g:qfenter_keymap.cnext_keep  = g:qfenter_cnext_map  | endif
 	if exists('g:qfenter_vcnext_map') | let g:qfenter_keymap.vcnext_keep = g:qfenter_vcnext_map | endif
 	if exists('g:qfenter_hcnext_map') | let g:qfenter_keymap.hcnext_keep = g:qfenter_hcnext_map | endif
@@ -107,7 +107,7 @@ else
 	if exists('g:qfenter_tcnext_map') | let g:qfenter_keymap.tcnext = g:qfenter_tcnext_map | endif
 endif
 
-if exists('g:qfenter_keep_quickfixfocus') && g:qfenter_keep_quickfixfocus.cprev && g:qfenter_keep_quickfixfocus.cprev == 1
+if exists('g:qfenter_keep_quickfixfocus') && has_key(g:qfenter_keep_quickfixfocus, 'cprev') && g:qfenter_keep_quickfixfocus.cprev == 1
 	if exists('g:qfenter_cprev_map')  | let g:qfenter_keymap.cprev_keep  = g:qfenter_cprev_map  | endif
 	if exists('g:qfenter_vcprev_map') | let g:qfenter_keymap.vcprev_keep = g:qfenter_vcprev_map | endif
 	if exists('g:qfenter_hcprev_map') | let g:qfenter_keymap.hcprev_keep = g:qfenter_hcprev_map | endif
