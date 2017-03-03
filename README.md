@@ -90,20 +90,20 @@ Supported commands (such as open or vopen in above examples) are:
 | **hcprev**                   | Open items using `:cprev` command in new horizontal splits from a previously focused window.|
 | **tcprev**                   | Open items using `:cprev` command in new tabs.|
 | | |
-| **open_keep**                | Same to **open**, but quickfix (or location list) window keeps focus after opening items.|
-| **vopen_keep**               | Same to **vopen**, but quickfix (or location list) window keeps focus after opening items.|
-| **hopen_keep**               | Same to **hopen**, but quickfix (or location list) window keeps focus after opening items.|
-| **topen_keep**               | Same to **topen**, but quickfix (or location list) window keeps focus after opening items.|
+| **open_keep**                | Same to **open**, but the quickfix (or location list) window keeps focus after opening items.|
+| **vopen_keep**               | Same to **vopen**, but the quickfix (or location list) window keeps focus after opening items.|
+| **hopen_keep**               | Same to **hopen**, but the quickfix (or location list) window keeps focus after opening items.|
+| **topen_keep**               | Same to **topen**, but the quickfix (or location list) window keeps focus after opening items.|
 | | |
-| **cnext_keep**               | Same to **cnext**, but quickfix (or location list) window keeps focus after opening items.|
-| **vcnext_keep**              | Same to **vcnext**, but quickfix (or location list) window keeps focus after opening items.|
-| **hcnext_keep**              | Same to **hcnext**, but quickfix (or location list) window keeps focus after opening items.|
-| **tcnext_keep**              | Same to **tcnext**, but quickfix (or location list) window keeps focus after opening items.|
+| **cnext_keep**               | Same to **cnext**, but the quickfix (or location list) window keeps focus after opening items.|
+| **vcnext_keep**              | Same to **vcnext**, but the quickfix (or location list) window keeps focus after opening items.|
+| **hcnext_keep**              | Same to **hcnext**, but the quickfix (or location list) window keeps focus after opening items.|
+| **tcnext_keep**              | Same to **tcnext**, but the quickfix (or location list) window keeps focus after opening items.|
 | | |
-| **cprev_keep**               | Same to **cprev**, but quickfix (or location list) window keeps focus after opening items.|
-| **vcprev_keep**              | Same to **vcprev**, but quickfix (or location list) window keeps focus after opening items.|
-| **hcprev_keep**              | Same to **hcprev**, but quickfix (or location list) window keeps focus after opening items.|
-| **tcprev_keep**              | Same to **tcprev**, but quickfix (or location list) window keeps focus after opening items.|
+| **cprev_keep**               | Same to **cprev**, but the quickfix (or location list) window keeps focus after opening items.|
+| **vcprev_keep**              | Same to **vcprev**, but the quickfix (or location list) window keeps focus after opening items.|
+| **hcprev_keep**              | Same to **hcprev**, but the quickfix (or location list) window keeps focus after opening items.|
+| **tcprev_keep**              | Same to **tcprev**, but the quickfix (or location list) window keeps focus after opening items.|
 
 For example, to open a next quickfix item in a previously focused window while keeping focus in the quickfix window by typing `<Leader>a`, you can use these:
 ```vim
