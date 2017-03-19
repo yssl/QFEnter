@@ -255,7 +255,11 @@ function! s:OpenQFItem(wintype, opencmd, qflnum)
 	" restore quickfix window when tab mode
 	if a:wintype==#'t'
 		if g:qfenter_enable_autoquickfix
-			exec modifier 'copen'
+			if isloclist
+				exec modifier 'lopen'
+			else
+				exec modifier 'copen'
+			endif
 			exec qfresize
 			call winrestview(qfview)
 			wincmd p
