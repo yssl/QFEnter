@@ -122,7 +122,7 @@ endif
 " autocmd
 augroup QFEnterAutoCmds
 	autocmd!
-	autocmd filetype qf call s:RegisterKeymap()
+	autocmd FileType qf call s:RegisterKeymap()
 augroup END
 
 " functions
