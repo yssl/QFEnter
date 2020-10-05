@@ -116,7 +116,16 @@ let g:qfenter_keymap = {}
 let g:qfenter_keymap.cnext_keep = ['<Leader>n']
 ```
 
-## Custom functions to specify a target window (for advanced users)
+## Preventing opening items in windows of certain filetypes
+
+Use `g:qfenter_exclude_filetypes` to prevent quickfix items from opening in windows of certain *filetypes*.
+For example, you can prevent opening items in NERDTree and Tagbar windows using the following code in your .vimrc:
+```vim
+let g:qfenter_exclude_filetypes = ['nerdtree', 'tagbar']
+```
+You can check *filetype* of the current window using `:echo &filetype`.
+
+## Use of custom functions to specify a target window (for advanced users)
 
 You can use your custom function, instead of the predefined commands, 
 to specify the window to jump to.

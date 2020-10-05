@@ -94,6 +94,10 @@ if !exists('g:qfenter_enable_autoquickfix')
 	let g:qfenter_enable_autoquickfix = 1
 endif
 
+if !exists('g:qfenter_exclude_filetypes')
+	let g:qfenter_exclude_filetypes = []
+endif
+
 
 " autocmd
 augroup QFEnterAutoCmds

@@ -113,6 +113,19 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 		call s:JumpToWin(target_winnr)
 	endif
 
+	let excluded = 0
+	for ft in g:qfenter_exclude_filetypes
+		if ft==#&filetype
+			let excluded = 1
+			break
+		endif
+	endfor
+	if excluded
+		echo "QFEnter: Quickfix items cannot be opened in a '".&filetype."' window"
+		wincmd p
+		return
+	endif
+
 	" execute vim quickfix open commands
 	if a:qfopencmd==#'cc'
 		call s:ExecuteCC(lnumqf, isloclist)

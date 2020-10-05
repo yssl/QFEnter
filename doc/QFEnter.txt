@@ -143,9 +143,22 @@ Default: >
     let g:qfenter_enable_autoquickfix = 1
 <
 
+*g:qfenter_exclude_filetypes*
+Use this option to prevent quickfix items from opening in windows of certain filetypes.
+Default: >
+    let g:qfenter_exclude_filetypes = []
+<
+For example, you can prevent opening items in NERDTree and Tagbar windows using the following code in your .vimrc: >
+    let g:qfenter_exclude_filetypes = ['nerdtree', 'tagbar']
+<
+You can check *filetype* of the current window using `:echo &filetype`.
+
 *g:qfenter_custom_map_list*
 An optional list of custom action mappings to use your 
 custom functions to specify the window to jump to.
+Default: >
+    let g:qfenter_custom_map_list = []
+<
 Each item in |g:qfenter_custom_map_list| should have four key-value pairs:
 
 * 'tabwinfunc': The name of your custom function to specify the target window, 
@@ -252,6 +265,8 @@ You can refer :help switchbuf for more details.
       g:qfenter_keep_quickfixfocus
     - Support custom functions to specify target window through 
       g:qfenter_custom_map_list. Thanks to p0deje!
+    - Add an option to prevent quickfix items from opening in windows 
+      of certain filetypes. Thanks to lsaint!
 
 2.3.1                       2017/03/04
     - Bug fix for deprecated variable(g:qfenter_keep_quickfixfocus) checking.
