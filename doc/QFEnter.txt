@@ -196,78 +196,13 @@ You can refer :help switchbuf for more details.
 ==============================================================================
 5. Deprecated Commands & Options                          *QFEnter-deprecated*
 
-Those commands are deprecated since version 2.3.0 and are supposed to be removed
-in version 2.4.0.
-Update those old key-mapping global variables and |g:qfenter_keep_quickfixfocus| 
-in your .vimrc with new commands of |g:qfenter_keymap| and their corresponding
-key maps.
-
-*g:qfenter_open_map*
-Key mappings to open items under cursor or in visual block in a previously
-focused window.
-Default: >
-    let g:qfenter_open_map = ['<CR>', '<2-LeftMouse>']
-<
-
-*g:qfenter_vopen_map*
-Key mappings to open items under cursor or in visual block in new vertical
-splits from a previously focused window.
-Default: >
-    let g:qfenter_vopen_map = ['<Leader><CR>']
-<
-
-*g:qfenter_hopen_map*
-Key mappings to open items under cursor or in visual block in new horizontal
-splits from a previously focused window.
-Default: >
-    let g:qfenter_hopen_map = ['<Leader><Space>']
-<
-
-*g:qfenter_topen_map*
-Key mappings to open items under cursor or in visual block in new tabs.
-Default: >
-    let g:qfenter_topen_map = ['<Leader><Tab>']
-<
-
-*g:qfenter_cnext_map*
-*g:qfenter_vcnext_map*
-*g:qfenter_hcnext_map*
-*g:qfenter_tcnext_map*
-Key mappings to open items using the :cnext command.
-Disabled by default.
-Default: >
-    let g:qfenter_cnext_map = []
-    let g:qfenter_vcnext_map = []
-    let g:qfenter_hcnext_map = []
-    let g:qfenter_tcnext_map = []
-<
-
-*g:qfenter_cprev_map*
-*g:qfenter_vcprev_map*
-*g:qfenter_hcprev_map*
-*g:qfenter_tcprev_map*
-Key mappings to open items using the :cprev command.
-Disabled by default.
-Default: >
-    let g:qfenter_cprev_map = []
-    let g:qfenter_vcprev_map = []
-    let g:qfenter_hcprev_map = []
-    let g:qfenter_tcprev_map = []
-<
-
-*g:qfenter_keep_quickfixfocus*
-If you want quickfix (or location list) window to keep focus after opening items, you can set this
-option for each opening command.
-Default: >
-    let g:qfenter_keep_quickfixfocus = {
-          \'open':0,
-          \'cnext':0,
-          \'cprev':0,
-          \}
-<
 
 ==============================================================================
 6. Changelog                                               *QFEnter-changelog*
+
+2.4.0                       2020/10/05
+    - Remove the deprecated commands from 2.3.0: g:qfenter_*_map, 
+      g:qfenter_keep_quickfixfocus
 
 2.3.1                       2017/03/04
     - Bug fix for deprecated variable(g:qfenter_keep_quickfixfocus) checking.
@@ -283,55 +218,55 @@ Default: >
     - Support location list (thanks to feix760)
     
 2.2.1                       2014/03/17
-    - update document for 'switchbuf' option.
+    - Update the document for 'switchbuf' option.
 
 2.2.0                       2014/03/17
-    - now QFEnter supports vim's 'switchbuf' option.
+    - Now QFEnter supports vim's 'switchbuf' option.
       if you change 'switchbuf' option, QFEnter adapts its behavior to the
       changed option.
-    - thanks to sergey-vlasov!
+    - Thanks to sergey-vlasov!
 
 2.1.0                       2014/01/28
-    - subdivide g:qfenter_keep_quickfixfocus option for each command. e.g.
+    - Subdivide g:qfenter_keep_quickfixfocus option for each command. e.g.
       g:qfenter_keep_quickfixfocus.open, g:qfenter_keep_quickfixfocus.cnext,
       g:qfenter_keep_quickfixfocus.cprev
-    - bug fix : not updated window for already opened file when
+    - Bug fix : not updated window for already opened file when
       g:qfenter_keep_quickfixfocus==1
-    - thanks to mMontu!
+    - Thanks to mMontu!
 
 2.0.0                       2014/01/27
-    - visual mode support to open multiple Quickfix items at once
-    - add option to keep focus in Quicifix window after opening items
+    - Visual mode support to open multiple Quickfix items at once
+    - Add option to keep focus in Quicifix window after opening items
       (g:qfenter_keep_quickfixfocus)
-    - support :cnext and :cprev command to open items
+    - Support :cnext and :cprev command to open items
 
 1.3.0                       2013/12/10
-    - improve auto quickfix open when 'open in new tab'
-        - restore view(cursor position, scroll..) of quickfix window to
+    - Improve auto quickfix open when 'open in new tab'
+        - Restore view(cursor position, scroll..) of quickfix window to
           auto-opened quickfix window
-        - restore size of quickfix window to auto-opened quickfix window
-        - now you don't need to provide g:qfenter_copen_modifier option.
+        - Restore size of quickfix window to auto-opened quickfix window
+        - Now you don't need to provide g:qfenter_copen_modifier option.
           QFEnter now smartly determine whether the new quickfix window is
           botright or topleft, vertical or horizontal.
-    - change g:qfenter_ttopen_map option name to g:qfenter_topen_map (backward
+    - Change g:qfenter_ttopen_map option name to g:qfenter_topen_map (backward
       compatibility ismaintained)
-    - remove '<Tab><Tab>' from default mapping
+    - Remove '<Tab><Tab>' from default mapping
 
 1.2.0                       2013/12/08
-    - now, Quickfix window is automatically opened after "open in a new tab"
-    - add options about Quickfix auto opening
-    - add one more default mapping for "open in a new tab"
-    - code refactoring
+    - Now, Quickfix window is automatically opened after "open in a new tab"
+    - Add options about Quickfix auto opening
+    - Add one more default mapping for "open in a new tab"
+    - Code refactoring
 
 1.1.1                       2013/12/06
-    - change default mapping for "open a file in a new tab"
+    - Change default mapping for "open a file in a new tab"
 
 1.1.0                       2013/12/06
-    - add new features
+    - Add new features
         : open a file under cursor in a new tab.
         : register custom "cc" command with g:qfenter_cc_cmd
 
 1.0.0                       2013/11/24
-    - first version
+    - First version
 
  vim: tw=78 ts=8 sts=4 tw=4 et ft=help norl:
