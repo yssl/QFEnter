@@ -92,7 +92,7 @@ Default: >
     let g:qfenter_keymap.hopen = ['<Leader><Space>']
     let g:qfenter_keymap.topen = ['<Leader><Tab>']
 <
-Supported commands are:
+Predefined commands are:
 
 'open':   Open items under cursor or in visual block in a previously focused window.
 'vopen':  Open items under cursor or in visual block in new vertical splits from a previously focused window.
@@ -141,6 +141,53 @@ original size, view and position to help you open other quickfix items.
 (not correctly, but smartly determined)
 Default: >
     let g:qfenter_enable_autoquickfix = 1
+<
+
+*g:qfenter_custom_map_list*
+An optional list of custom action mappings to use your 
+custom functions to specify the window to jump to.
+Each item in |g:qfenter_custom_map_list| should have four key-value pairs:
+
+* 'tabwinfunc': The name of your custom function to specify the target window, 
+ which should not have any parameters.
+ Its return value should be a list of ['tabpagenr', 'winnr', 'hasfocus', 'isnewtabwin'].
+  *'tabpagenr': tabpage number of the target window
+  * 'winnr': window number of the target window
+  * 'hasfocus': whether the target window already has focus or not
+  * 'isnewtabwin': 
+    * `'nt'`: the target window is in a newly created tab
+    * `'nw'`: the target window is a newly created window
+    * otherwise: the target window is one of existing windows
+* 'qfopencmd': One of the following values
+  * `'cc'`: Open a quickfix item using `:cc`.
+  * `'cn'`: Open a quickfix item using `:cnext`.
+  * `'cp'`: Open a quickfix item using `:cprev`.
+* 'keepfocus': `1` to keep focus in the quickfix (or location list) window after opening an item, otherwise `0`.
+* 'keys': shortcut key list
+
+For example, with the following code in .vimrc, 
+* You can open a next quickfix item in a
+previously focused window while keeping focus in the quickfix window by typing `<Leader>n`
+(identical effect to `let g:qfenter_keymap.cnext_keep = ['<Leader>n']`).
+
+* You can open a quickfix item under cursor in the first window (winnr==1) in the first tab (tabnr==1).
+>
+    let g:qfenter_custom_map_list = []
+    call add(g:qfenter_custom_map_list, {
+			\'tabwinfunc': 'QFEnter#GetTabWinNR_Open',
+			\'qfopencmd': 'cn',
+			\'keepfocus': 1,
+			\'keys': ['<Leader>n'],
+			\})
+    call add(g:qfenter_custom_map_list, {
+			\'tabwinfunc': 'TestTab1Win1_Open',
+			\'qfopencmd': 'cc',
+			\'keepfocus': 0,
+			\'keys': ['<Leader>t'],
+			\})
+    func! TestTab1Win1_Open()
+	return [1, 1, 0, '']
+    endfunc
 <
 
 *g:qfenter_cc_cmd*
@@ -203,6 +250,8 @@ You can refer :help switchbuf for more details.
 2.4.0                       2020/10/05
     - Remove the deprecated commands from 2.3.0: g:qfenter_*_map, 
       g:qfenter_keep_quickfixfocus
+    - Support custom functions to specify target window through 
+      g:qfenter_custom_map_list. Thanks to p0deje!
 
 2.3.1                       2017/03/04
     - Bug fix for deprecated variable(g:qfenter_keep_quickfixfocus) checking.

@@ -51,9 +51,14 @@ In the quickfix (or location list) window,
                 new tab to help you open other quickfix items. This behavior
                 can be changed with the `g:qfenter_enable_autoquickfix` option.
 
-## Customization
+## Key mapping
 
-You can change the key mappings in your .vimrc. The default setting is, 
+You can change the key mappings in your .vimrc in the following format:
+
+let g:qfenter_keymap = {}  
+let g:qfenter_keymap.*predefined_command* = *shortcut_key_list*
+
+The default setting is, 
 ```vim
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
@@ -71,7 +76,7 @@ let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
 let g:qfenter_keymap.topen = ['<C-t>']
 ```
 
-Supported commands (such as open or vopen in above examples) are:
+## Predefined commands
 
 | Commands                   | Meaning      |
 | -------------------------- | -------------------------|
@@ -105,10 +110,60 @@ Supported commands (such as open or vopen in above examples) are:
 | **hcprev_keep**              | Same as **hcprev**, but the quickfix (or location list) window keeps focus after opening items.|
 | **tcprev_keep**              | Same as **tcprev**, but the quickfix (or location list) window keeps focus after opening items.|
 
-For example, to open a next quickfix item in a previously focused window while keeping focus in the quickfix window by typing `<Leader>a`, you can use these:
+For example, to open a next quickfix item in a previously focused window while keeping focus in the quickfix window by typing `<Leader>n`, you can use these:
 ```vim
 let g:qfenter_keymap = {}
-let g:qfenter_keymap.cnext_keep = ['<Leader>a']
+let g:qfenter_keymap.cnext_keep = ['<Leader>n']
+```
+
+## Custom functions to specify a target window (for advanced users)
+
+You can use your custom function, instead of the predefined commands, 
+to specify the window to jump to.
+
+For this, use `g:qfenter_custom_map_list` in your .vimrc.
+Each item in `g:qfenter_custom_map_list` should have four key-value pairs:
+
+* **tabwinfunc**: The name of your custom function to specify the target window, 
+ which should not have any parameters.
+ Its return value should be a list of [*tabpagenr*, *winnr*, *hasfocus*, *isnewtabwin*].
+  * *tabpagenr*: tabpage number of the target window
+  * *winnr*: window number of the target window
+  * *hasfocus*: whether the target window already has focus or not
+  * *isnewtabwin*: 
+    * `'nt'`: the target window is in a newly created tab
+    * `'nw'`: the target window is a newly created window
+    * otherwise: the target window is one of existing windows
+* **qfopencmd**: One of the following values
+  * `'cc'`: Open a quickfix item using `:cc`.
+  * `'cn'`: Open a quickfix item using `:cnext`.
+  * `'cp'`: Open a quickfix item using `:cprev`.
+* **keepfocus**: `1` to keep focus in the quickfix (or location list) window after opening an item, otherwise `0`.
+* **keys**: shortcut key list
+
+For example, with the following code in .vimrc, 
+* You can open a next quickfix item in a
+previously focused window while keeping focus in the quickfix window by typing `<Leader>n`
+(identical effect to `let g:qfenter_keymap.cnext_keep = ['<Leader>n']`).
+* You can open a quickfix item under cursor in the first window (winnr==1) in the first tab (tabnr==1).
+
+```
+let g:qfenter_custom_map_list = []
+call add(g:qfenter_custom_map_list, {
+			\'tabwinfunc': 'QFEnter#GetTabWinNR_Open',
+			\'qfopencmd': 'cn',
+			\'keepfocus': 1,
+			\'keys': ['<Leader>n'],
+			\})
+call add(g:qfenter_custom_map_list, {
+			\'tabwinfunc': 'TestTab1Win1_Open',
+			\'qfopencmd': 'cc',
+			\'keepfocus': 0,
+			\'keys': ['<Leader>t'],
+			\})
+func! TestTab1Win1_Open()
+	return [1, 1, 0, '']
+endfunc
 ```
 
 ## Motivation

@@ -75,13 +75,20 @@ if !exists('g:qfenter_cp_cmd')  | let g:qfenter_cp_cmd = 'cp'   | endif
 if !exists('g:qfenter_lne_cmd') | let g:qfenter_lne_cmd = 'lne' | endif
 if !exists('g:qfenter_lp_cmd')  | let g:qfenter_lp_cmd = 'lp'   | endif
 
-"g:qfenter_funcmap = {}
-"g:qfenter_funcmap.open = {
-			"\'tabwinfunc': 'QFEnter#GetTabWinNR_Open',
-			"\'qfopencmd': 'cc',
-			"\'keepfocus': 0,
-			"\'keymap': ['<CR>', '<2-LeftMouse>'],
-"}
+if !exists('g:qfenter_custom_map_list')
+	let g:qfenter_custom_map_list = []
+endif
+"The effect of 
+" let g:qfenter_custom_map_list = []
+" call add(g:qfenter_custom_map_list, {
+"		\'tabwinfunc': 'QFEnter#GetTabWinNR_Open',
+"		\'qfopencmd': 'cn',
+"		\'keepfocus': 1,
+"		\'keys': ['<Leader>n'],
+"		\})
+"is identical to 
+" let g:qfenter_keymap = {}
+" let g:qfenter_keymap.cnext_keep = ['<Leader>n']
 
 if !exists('g:qfenter_enable_autoquickfix')
 	let g:qfenter_enable_autoquickfix = 1
@@ -104,6 +111,12 @@ function! s:RegisterKeymap()
 			execute 'nnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.tabwinfunc.'","'.qfopencmd.'","'.keepfocus.'",0)<CR>'
 			execute 'vnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.tabwinfunc.'","'.qfopencmd.'","'.keepfocus.'",1)<CR>'
 		endfor
+	endfor
+	for cfitem in g:qfenter_custom_map_list
+		for key in cfitem.keys
+			execute 'nnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.cfitem.tabwinfunc.'","'.cfitem.qfopencmd.'","'.cfitem.keepfocus.'",0)<CR>'
+			execute 'vnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.cfitem.tabwinfunc.'","'.cfitem.qfopencmd.'","'.cfitem.keepfocus.'",1)<CR>'
+		endfor 
 	endfor
 endfunction
 
