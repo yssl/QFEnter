@@ -163,6 +163,11 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 
 	" restore quickfix window when tab mode
 	if target_newtabwin==#'nt'
+		" to match split behavior, jump back to before qf in orig win
+		clearjumps
+		tabprev
+		wincmd p
+		tabnext
 		if g:qfenter_enable_autoquickfix
 			if isloclist
 				exec s:modifier 'lopen'
