@@ -153,7 +153,8 @@ For example, you can prevent opening items in NERDTree and Tagbar windows using 
 <
 You can check *filetype* of the current window using `:echo &filetype`.
 
-*g:qfenter_exclude_filetypes*
+
+*g:qfenter_prevtabwin_policy*
 This option determines which window on which tab should have focus when the `wincmd p` is executed after opening a quickfix item.
 
 * 'qf': The previous window and tab are set to the quickfix window from which the QFEnter open command is invoked and the tab the window belongs to.
