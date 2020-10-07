@@ -87,6 +87,9 @@ function! QFEnter#GetTabWinNR_TOpen()
 		let s:modifier = s:modifier.' botright'
 	endif
 
+	" add this line to match the behavior of VOpen() and HOpen()
+	wincmd p
+
 	tabnew
 
 	return [tabpagenr(), winnr(), 1, 'nt']
@@ -102,7 +105,11 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 		let isloclist = 0
 	endif
 
-	" arrange a window or tab in which quickfix item to be opened
+	" for g:qfenter_prevtabwin_policy
+	let prev_qf_tabnr = tabpagenr()
+	let prev_qf_winnr = winnr()
+
+	" jump to a window or tab in which quickfix item to be opened
 	exec 'let ret = '.a:tabwinfunc.'()'
 	let target_tabnr = ret[0]
 	let target_winnr = ret[1]
@@ -111,6 +118,35 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 	if !hasfocus
 		call s:JumpToTab(target_tabnr)
 		call s:JumpToWin(target_winnr)
+	endif
+
+	if g:qfenter_prevtabwin_policy==#'qf'
+		if target_newtabwin==#'nt'
+			if prev_qf_tabnr >= target_tabnr
+				let prev_qf_tabnr += 1
+			endif
+			call s:JumpToTab(prev_qf_tabnr)
+			call s:JumpToWin(prev_qf_winnr)
+			call s:JumpToTab(target_tabnr)
+		else
+			if prev_qf_winnr >= target_winnr
+				let prev_qf_winnr += 1
+			endif
+			call s:JumpToWin(prev_qf_winnr)
+			call s:JumpToWin(target_winnr)
+		endif
+	elseif g:qfenter_prevtabwin_policy==#'none'
+	elseif g:qfenter_prevtabwin_policy==#'legacy'
+		if target_newtabwin==#'nt'
+			if prev_qf_tabnr >= target_tabnr
+				let prev_qf_tabnr += 1
+			endif
+			call s:JumpToTab(prev_qf_tabnr)
+			call s:JumpToWin(prev_qf_winnr)
+			call s:JumpToTab(target_tabnr)
+		endif
+	else
+		echoerr 'QFEnter: '''.g:qfenter_prevtabwin_policy.''' is an undefined value for g:qfenter_prevtabwin_policy.'
 	endif
 
 	let excluded = 0

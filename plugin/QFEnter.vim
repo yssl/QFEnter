@@ -68,12 +68,22 @@ if !exists('g:qfenter_enable_autoquickfix')
 	let g:qfenter_enable_autoquickfix = 1
 endif
 
-if !exists('g:qfenter_cc_cmd')  | let g:qfenter_cc_cmd = '##cc' | endif
-if !exists('g:qfenter_ll_cmd')  | let g:qfenter_ll_cmd = '##ll' | endif
-if !exists('g:qfenter_cn_cmd')  | let g:qfenter_cn_cmd = 'cn'   | endif
-if !exists('g:qfenter_cp_cmd')  | let g:qfenter_cp_cmd = 'cp'   | endif
-if !exists('g:qfenter_lne_cmd') | let g:qfenter_lne_cmd = 'lne' | endif
-if !exists('g:qfenter_lp_cmd')  | let g:qfenter_lp_cmd = 'lp'   | endif
+if !exists('g:qfenter_exclude_filetypes')
+	let g:qfenter_exclude_filetypes = []
+endif
+
+if !exists('g:qfenter_prevtabwin_policy')
+	" This option determines which window on which tab should have focus when the `wincmd p` is executed after opening a quickfix item.
+	" 'qf': The previous window and tab are set to the quickfix window from which the QFEnter open command is invoked and the tab the window belongs to.
+	" 'none': Do nothing for the previous window and tab.
+	"         The previous window is the window that previously had focus before the target window, in the process of `tabwinfunc`.
+	"         For `v*` and `h*` predefined commands, the previous window is the window focused before the quickfix window.
+	"         For `t*` predefined commands, the previous window and tab are the window focused before the quickfix window and the tab it belongs to.
+	" 'legacy': The option for legacy behavior prior to QFEnter 2.4.1.
+	"           For `t*` predefined commands, follow the 'qf' policy.
+	"           Otherwise, follow the 'none' policy.
+	let g:qfenter_prevtabwin_policy = 'qf'
+endif
 
 if !exists('g:qfenter_custom_map_list')
 	let g:qfenter_custom_map_list = []
@@ -90,13 +100,12 @@ endif
 " let g:qfenter_keymap = {}
 " let g:qfenter_keymap.cnext_keep = ['<Leader>n']
 
-if !exists('g:qfenter_enable_autoquickfix')
-	let g:qfenter_enable_autoquickfix = 1
-endif
-
-if !exists('g:qfenter_exclude_filetypes')
-	let g:qfenter_exclude_filetypes = []
-endif
+if !exists('g:qfenter_cc_cmd')  | let g:qfenter_cc_cmd = '##cc' | endif
+if !exists('g:qfenter_ll_cmd')  | let g:qfenter_ll_cmd = '##ll' | endif
+if !exists('g:qfenter_cn_cmd')  | let g:qfenter_cn_cmd = 'cn'   | endif
+if !exists('g:qfenter_cp_cmd')  | let g:qfenter_cp_cmd = 'cp'   | endif
+if !exists('g:qfenter_lne_cmd') | let g:qfenter_lne_cmd = 'lne' | endif
+if !exists('g:qfenter_lp_cmd')  | let g:qfenter_lp_cmd = 'lp'   | endif
 
 
 " autocmd
