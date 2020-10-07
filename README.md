@@ -154,7 +154,7 @@ For example, with the following code in .vimrc,
 * You can open a next quickfix item in a
 previously focused window while keeping focus in the quickfix window by typing `<Leader>n`
 (identical effect to `let g:qfenter_keymap.cnext_keep = ['<Leader>n']`).
-* You can open a quickfix item under cursor in the first window (winnr==1) in the first tab (tabnr==1).
+* You can open a quickfix item under cursor in the first window (`winnr`==1) in the first tab (`tabpagenr`==1) by typing `<Leader>f`.
 
 ```
 let g:qfenter_custom_map_list = []
@@ -168,7 +168,7 @@ call add(g:qfenter_custom_map_list, {
 			\'tabwinfunc': 'TestTab1Win1_Open',
 			\'qfopencmd': 'cc',
 			\'keepfocus': 0,
-			\'keys': ['<Leader>t'],
+			\'keys': ['<Leader>f'],
 			\})
 func! TestTab1Win1_Open()
 	return [1, 1, 0, '']
