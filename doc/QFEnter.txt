@@ -276,26 +276,36 @@ You can refer :help switchbuf for more details.
 ==============================================================================
 6. Changelog                                               *QFEnter-changelog*
 
+2.4.1                       2020/10/07
+    - Add an option for the policy to determine the previous window / tab'
+      g:qfenter_custom_map_list. Thanks for the suggestions, Konfekt and mckellyln!
+
 2.4.0                       2020/10/05
     - Remove the deprecated commands from 2.3.0: g:qfenter_*_map, 
       g:qfenter_keep_quickfixfocus
     - Support custom functions to specify target window through 
-      g:qfenter_custom_map_list. Thanks to p0deje!
+      g:qfenter_custom_map_list. Thanks for the suggestion, p0deje!
     - Add an option to prevent quickfix items from opening in windows 
-      of certain filetypes. Thanks to lsaint!
+      of certain filetypes. Thanks for the suggestion, lsaint!
+    - Fix typo `filetype` to `FileType`. Thanks for the PR, dragonxlwang!
+    - Fix always open quickfix window when 'open in a new tab' command 
+      is executed inside the location list. Thanks for the PR, QMonkey!
 
 2.3.1                       2017/03/04
     - Bug fix for deprecated variable(g:qfenter_keep_quickfixfocus) checking.
+      Thanks for the report, Leandro!
     - Update documents for customization.
 
 2.3.0                       2017/02/28
     - Key mapping setup has totally changed for more flexible customizing.
+      Thanks for the suggestion, qsvui!
+    - Include handling for :lne and :lp. Thanks for the PR, mMontu!
 
 2.2.2                       2015/05/26
-    - Avoid messages when mappings are executed. (thanks to mMontu)
+    - Avoid messages when mappings are executed. Thanks for the PR, mMontu!
     - Catch E553 of cn & cp commands
-    - Modelines, clean up vimdoc formatting and edit text (thanks to ches)
-    - Support location list (thanks to feix760)
+    - Modelines, clean up vimdoc formatting and edit text. Thanks to the PR, ches!
+    - Support location list. Thanks to the PR, feix760!
     
 2.2.1                       2014/03/17
     - Update the document for 'switchbuf' option.
@@ -303,8 +313,7 @@ You can refer :help switchbuf for more details.
 2.2.0                       2014/03/17
     - Now QFEnter supports vim's 'switchbuf' option.
       if you change 'switchbuf' option, QFEnter adapts its behavior to the
-      changed option.
-    - Thanks to sergey-vlasov!
+      changed option. Thanks to the suggestion, sergey-vlasov!
 
 2.1.0                       2014/01/28
     - Subdivide g:qfenter_keep_quickfixfocus option for each command. e.g.
@@ -312,7 +321,7 @@ You can refer :help switchbuf for more details.
       g:qfenter_keep_quickfixfocus.cprev
     - Bug fix : not updated window for already opened file when
       g:qfenter_keep_quickfixfocus==1
-    - Thanks to mMontu!
+    - Thanks for the suggestions, mMontu!
 
 2.0.0                       2014/01/27
     - Visual mode support to open multiple Quickfix items at once
