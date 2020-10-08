@@ -157,11 +157,11 @@ Use `g:qfenter_prevtabwin_policy` to determine which window on which tab should 
 
 * `'qf'`: The previous window and tab are set to the quickfix window from which the QFEnter open command is invoked and the tab the window belongs to.
 * `'none'`: Do nothing for the previous window and tab. The previous window is the window that previously had focus before the target window, in the process of `tabwinfunc`.
- * For `v*` and `h*` predefined commands, the previous window is the window focused before the quickfix window.
- * For `t*` predefined commands, the previous window and tab are the window focused before the quickfix window and the tab it belongs to.
+  * For `v*` and `h*` predefined commands, the previous window is the window focused before the quickfix window.
+  * For `t*` predefined commands, the previous window and tab are the window focused before the quickfix window and the tab it belongs to.
 * `'legacy'`: The option for legacy behavior prior to QFEnter 2.4.1.
- * For `t*` predefined commands, follow the `'qf'` policy.
- * Otherwise, follow the `'none'` policy.
+  * For `t*` predefined commands, follow the `'qf'` policy.
+  * Otherwise, follow the `'none'` policy.
 
 The default setting is, 
 ```vim
