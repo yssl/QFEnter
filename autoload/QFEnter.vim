@@ -129,7 +129,7 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 			call s:JumpToWin(prev_qf_winnr)
 			call s:JumpToTab(target_tabnr)
 		else
-			if prev_qf_winnr >= target_winnr
+			if target_newtabwin==#'nw' && prev_qf_winnr >= target_winnr
 				let prev_qf_winnr += 1
 			endif
 			call s:JumpToWin(prev_qf_winnr)
