@@ -108,6 +108,7 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 	" for g:qfenter_prevtabwin_policy
 	let prev_qf_tabnr = tabpagenr()
 	let prev_qf_winnr = winnr()
+	let orig_prev_qf_winnr = prev_qf_winnr
 
 	" jump to a window or tab in which quickfix item to be opened
 	exec 'let ret = '.a:tabwinfunc.'()'
@@ -185,11 +186,39 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 		elseif target_newtabwin==#'nw'
 			if target_tabnr!=qfopened_tabnr	|"when 'usetab' applied
 				call s:JumpToTab(target_tabnr)
-				quit 	|"close the target window without jumping
+
+				" Close The empty, newly created target window and jump to the quickfix window.
+				" When returning from the tab containing the selecte item window to original tab,
+				if g:qfenter_prevtabwin_policy==#'qf' || g:qfenter_prevtabwin_policy==#'leagcy'
+					" the quickfix window should have a focus.
+					call s:CloseCurrentWinAndJumpTo(prev_qf_winnr)
+				else
+					" the original 'wincmd p' window of quickfix should have a focus.
+					" Just 'quit' makes the right or bottom window of the window close which has been newly created,
+					" ti works correctly.
+					quit
+				endif
+
 				call s:JumpToTab(qfopened_tabnr)
+
 			elseif target_winnr!=qfopened_winnr
 				call s:JumpToWin(target_winnr)
 				call s:CloseCurrentWinAndJumpTo(qfopened_winnr)
+
+				" To set quickfix window as a prevous window.
+				"
+				" Let's say we have opened an item with some 'nw' command which had already opened in a window A.
+				" During the opening process, a new window N is created and 'cc' (or other) command 
+				" make the focus jump to A due to the switchbuf option. So window history is quickfix Q - N - A.
+				" Then N is closed. So it should be Q - A, meaning that 'wincmd p' in A make a jump to Q.
+				" BUT the default behavior of vim is not like this. 'wincmd p' in A just stays in A.
+				" This code reconnects Q and A in terms of prev win history.
+				"
+				" Note that checking if g:qfenter_prevtabwin_policy==#'qf' in not necessary
+				" beause the prev window still should be the quickfix window even if the option is 'none'
+				" becuase not a new window but one of existing windows is focused.
+				call s:JumpToWin(orig_prev_qf_winnr)
+				wincmd p
 			endif
 		" if the target window is one of existing windows, do nothing 
 		" because the target window had focused and qfopencmd (such as cc) has moved the focus
