@@ -154,6 +154,16 @@ For example, you can prevent opening items in NERDTree and Tagbar windows using 
 You can check *filetype* of the current window using `:echo &filetype`.
 
 
+*g:qfenter_excluded_action*
+Action to take when selected window contains an excluded filetype.
+
+* 'error': Show an error message and do not open the file.
+* 'next': Open the file in the next usable window, otherwise fall back to quickfix default (split above)
+
+Default: >
+    let g:qfenter_excluded_action = 'error'
+
+
 *g:qfenter_prevtabwin_policy*
 This option determines which window on which tab should have focus when the `wincmd p` is executed after opening a quickfix item.
 

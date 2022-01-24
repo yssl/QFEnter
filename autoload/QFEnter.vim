@@ -150,6 +150,16 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 		echoerr 'QFEnter: '''.g:qfenter_prevtabwin_policy.''' is an undefined value for g:qfenter_prevtabwin_policy.'
 	endif
 
+	if g:qfenter_excluded_action==#'next'
+		" move to next usable window if possible
+		let c = 0
+		let wincount = winnr('$')
+		while ( index(g:qfenter_exclude_filetypes, &ft) >= 0 && c < wincount )
+			wincmd w
+			let c = c + 1
+		endwhile
+	endif
+
 	let excluded = 0
 	for ft in g:qfenter_exclude_filetypes
 		if ft==#&filetype
