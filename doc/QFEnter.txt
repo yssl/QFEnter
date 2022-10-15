@@ -9,7 +9,7 @@ Contents                                                    *QFEnter-contents*
         1. Introduction ............................... |QFEnter-intro|
         2. Usage ...................................... |QFEnter-usage|
         3. Options .................................... |QFEnter-options|
-        4. |switchbuf| option ........................... |QFEnter-switchbuf|
+        4. |switchbuf| option ......................... |QFEnter-switchbuf|
         5. Deprecated Commands & Options .............. |QFEnter-deprecated|
         6. Changelog .................................. |QFEnter-changelog|
 
@@ -157,11 +157,11 @@ You can check *filetype* of the current window using `:echo &filetype`.
 *g:qfenter_excluded_action*
 Action to take when selected window contains an excluded filetype.
 
-* 'error': Show an error message and do not open the file.
 * 'next': Open the file in the next usable window, otherwise fall back to quickfix default (split above)
+* 'error': Show an error message and do not open the file. This is an option for legacy behavior prior to QFEnter 2.4.2.
 
 Default: >
-    let g:qfenter_excluded_action = 'error'
+    let g:qfenter_excluded_action = 'next'
 
 
 *g:qfenter_prevtabwin_policy*
@@ -286,6 +286,14 @@ You can refer :help switchbuf for more details.
 
 ==============================================================================
 6. Changelog                                               *QFEnter-changelog*
+
+2.4.2                       2022/10/15
+    - Change the default value of g:qfenter_excluded_action to 'next'
+    - Fix the behavior in the case of undefined g:qfenter_excluded_action and g:qfenter_prevtabwin_policy
+    - Add option to use next window when excluded. Thanks for the PR, mmrwoods!
+    - Fix g:qfenter_prevtabwin_policy behavior when switchbuf=usetab or useopen is used
+      and fix a bug with 'open' cmds. Thanks for the suggestions, Konfekt!
+    - Fix prevtabwin_policy tag name in doc. Thanks for the PR, tssm!
 
 2.4.1                       2020/10/07
     - Add an option for the policy to determine the previous window / tab'

@@ -74,14 +74,14 @@ endif
 
 if !exists('g:qfenter_excluded_action')
 	" Action to take when the selected window contains and exclude filetype
-	" 'error': Show an error message and do not open the file (Default)
-	" 'next': Open the file in the next usable window, fall back to quickfix default if no usable windows (split above)
-	let g:qfenter_excluded_action = 'error'
+	" 'next': Open the file in the next usable window, fall back to quickfix default if no usable windows (split above) (Default)
+	" 'error': Show an error message and do not open the file
+	let g:qfenter_excluded_action = 'next'
 endif
 
 if !exists('g:qfenter_prevtabwin_policy')
 	" This option determines which window on which tab should have focus when the `wincmd p` is executed after opening a quickfix item.
-	" 'qf': The previous window and tab are set to the quickfix window from which the QFEnter open command is invoked and the tab the window belongs to.
+	" 'qf': The previous window and tab are set to the quickfix window from which the QFEnter open command is invoked and the tab the window belongs to. (Default)
 	" 'none': Do nothing for the previous window and tab.
 	"         The previous window is the window that previously had focus before the target window, in the process of `tabwinfunc`.
 	"         For `v*` and `h*` predefined commands, the previous window is the window focused before the quickfix window.
