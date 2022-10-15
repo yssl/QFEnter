@@ -72,6 +72,13 @@ if !exists('g:qfenter_exclude_filetypes')
 	let g:qfenter_exclude_filetypes = []
 endif
 
+if !exists('g:qfenter_excluded_action')
+	" Action to take when the selected window contains and exclude filetype
+	" 'error': Show an error message and do not open the file (Default)
+	" 'next': Open the file in the next usable window, fall back to quickfix default if no usable windows (split above)
+	let g:qfenter_excluded_action = 'error'
+endif
+
 if !exists('g:qfenter_prevtabwin_policy')
 	" This option determines which window on which tab should have focus when the `wincmd p` is executed after opening a quickfix item.
 	" 'qf': The previous window and tab are set to the quickfix window from which the QFEnter open command is invoked and the tab the window belongs to.
