@@ -53,29 +53,29 @@ a file from the quickfix window -- the `<Enter>` key.
 
 In the quickfix (or location list) window,
 
-**\<Enter\>**, **\<2-LeftMouse\>**  
-*Normal mode* : Open an item under cursor in the previously focused window.  
-*Visual mode* : Open items in visual selection in the previously focused
+* **\<Enter\>**, **\<2-LeftMouse\>**  
+  * *Normal mode* : Open an item under cursor in the previously focused window.  
+  * *Visual mode* : Open items in visual selection in the previously focused
                 window.  As a result, the last item appears in the window.
 
-**\<Leader\>\<Enter\>**  
-*Normal mode* : Open an item under cursor in a new vertical split of the
+* **\<Leader\>\<Enter\>**  
+  * *Normal mode* : Open an item under cursor in a new vertical split of the
                 previously focused window.  
-*Visual mode* : Open items in visual selection in a sequence of new vertical
+  * *Visual mode* : Open items in visual selection in a sequence of new vertical
                 splits from the previously focused window.
 
-**\<Leader\>\<Space\>**  
-*Normal mode* : Open an item under cursor in a new horizontal split from the
+* **\<Leader\>\<Space\>**  
+  * *Normal mode* : Open an item under cursor in a new horizontal split from the
                 previously focused window.  
-*Visual mode* : Open items in visual selection in a sequence of new horizontal
+  * *Visual mode* : Open items in visual selection in a sequence of new horizontal
                 splits of the previously focused window.
 
-**\<Leader\>\<Tab\>**  
-*Normal mode* : Open an item under cursor in a new tab.  
-*Visual mode* : Open items in visual selection in a sequence of new tabs.
-                By default, the quickfix window is automatically opened in the
-                new tab to help you open other quickfix items. This behavior
-                can be changed with the `g:qfenter_enable_autoquickfix` option.
+* **\<Leader\>\<Tab\>**  
+  * *Normal mode* : Open an item under cursor in a new tab.  
+  * *Visual mode* : Open items in visual selection in a sequence of new tabs.
+  * By default, the quickfix window is automatically opened in the
+new tab to help you open other quickfix items. This behavior
+can be changed with the `g:qfenter_enable_autoquickfix` option.
 
 ## Key mapping
 
