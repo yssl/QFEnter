@@ -137,6 +137,7 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 			call s:JumpToWin(target_winnr)
 		endif
 	elseif g:qfenter_prevtabwin_policy==#'none'
+		" do nothing
 	elseif g:qfenter_prevtabwin_policy==#'legacy'
 		if target_newtabwin==#'nt'
 			if prev_qf_tabnr >= target_tabnr
@@ -148,28 +149,30 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 		endif
 	else
 		echoerr 'QFEnter: '''.g:qfenter_prevtabwin_policy.''' is an undefined value for g:qfenter_prevtabwin_policy.'
+		call s:JumpToTab(prev_qf_tabnr)
+		call s:JumpToWin(prev_qf_winnr)
+		return
 	endif
 
 	if g:qfenter_excluded_action==#'next'
-		" move to next usable window if possible
+		" if the selected window contains an excluded filetype, move to next usable window if possible
 		let c = 0
 		let wincount = winnr('$')
-		while ( index(g:qfenter_exclude_filetypes, &ft) >= 0 && c < wincount )
+		while ( index(g:qfenter_exclude_filetypes, &filetype) >= 0 && c < wincount )
 			wincmd w
 			let c = c + 1
 		endwhile
-	endif
-
-	let excluded = 0
-	for ft in g:qfenter_exclude_filetypes
-		if ft==#&filetype
-			let excluded = 1
-			break
+	elseif g:qfenter_excluded_action==#'error'
+		" if the selected window contains an excluded filetype, show an error message and do not open the file.
+		if index(g:qfenter_exclude_filetypes, &filetype) >= 0
+			echo "QFEnter: Quickfix items cannot be opened in a '".&filetype."' window"
+			wincmd p
+			return
 		endif
-	endfor
-	if excluded
-		echo "QFEnter: Quickfix items cannot be opened in a '".&filetype."' window"
-		wincmd p
+	else
+		echoerr 'QFEnter: '''.g:qfenter_excluded_action.''' is an undefined value for g:qfenter_excluded_action.'
+		call s:JumpToTab(prev_qf_tabnr)
+		call s:JumpToWin(prev_qf_winnr)
 		return
 	endif
 
