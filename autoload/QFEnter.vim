@@ -241,15 +241,29 @@ function! s:OpenQFItem(tabwinfunc, qfopencmd, qflnum)
 
 	" restore quickfix window when tab mode
 	if target_newtabwin==#'nt'
-		if g:qfenter_enable_autoquickfix
-			if isloclist
-				exec s:modifier 'lopen'
-			else
-				exec s:modifier 'copen'
+		if exists('g:qfenter_enable_autoquickfix')
+			echom "QFEnter: 'g:qfenter_enable_autoquickfix' is deprecated and will be removed from 2.5.0. Now the default setting of the new option g:qfenter_autoclose=0 will open a quickfix in a new tab (if g:qfenter_enable_autoquickfix is not 0 before 2.5.0). Please refer :help g:qfenter_autoclose."
+			if g:qfenter_enable_autoquickfix
+				if isloclist
+					exec s:modifier 'lopen'
+				else
+					exec s:modifier 'copen'
+				endif
+				exec s:qfresize
+				call winrestview(s:qfview)
+				wincmd p
 			endif
-			exec s:qfresize
-			call winrestview(s:qfview)
-			wincmd p
+		else
+			if !g:qfenter_autoclose
+				if isloclist
+					exec s:modifier 'lopen'
+				else
+					exec s:modifier 'copen'
+				endif
+				exec s:qfresize
+				call winrestview(s:qfview)
+				wincmd p
+			endif
 		endif
 	endif
 endfunction
@@ -264,9 +278,10 @@ function! QFEnter#OpenQFItem(tabwinfunc, qfopencmd, keepfocus, isvisual)
 
 	call s:OpenQFItem(a:tabwinfunc, a:qfopencmd, qflnum)
 
+	" keepfocus
 	if a:isvisual
 		if qflnum==vblnum2
-			if a:keepfocus==1
+			if a:keepfocus
 				redraw
 				let qfwinnr = bufwinnr(qfbufnr)
 				exec qfwinnr.'wincmd w'
@@ -276,12 +291,27 @@ function! QFEnter#OpenQFItem(tabwinfunc, qfopencmd, keepfocus, isvisual)
 			exec qfwinnr.'wincmd w'
 		endif
 	else
-		if a:keepfocus==1
+		if a:keepfocus
 			redraw
 			let qfwinnr = bufwinnr(qfbufnr)
 			exec qfwinnr.'wincmd w'
 		endif
 	endif
+
+	" g:qfenter_autoclose
+	if len(getloclist(0)) > 0
+		let isloclist = 1
+	else
+		let isloclist = 0
+	endif
+	if g:qfenter_autoclose
+		if isloclist
+			lclose
+		else
+			cclose
+		endif
+	endif
+
 endfunction
 
 fun! s:CloseCurrentWinAndJumpTo(return_winnr)

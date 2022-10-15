@@ -133,14 +133,14 @@ For example, to open a next quickfix item in a previously focused window while k
     let g:qfenter_keymap.cnext_keep = ['<Leader>a']
 <
 
-*g:qfenter_enable_autoquickfix*
-Enable or disable automatic opening of quickfix window when 'open in a new
-tab' command is executed.
-If enabled, quickfix window is automatically opened in the new tab with its
+*g:qfenter_autoclose*
+Enable or disable automatic closing of a quickfix window after opening an item.
+when 'open in a new tab' command is executed, if this option disabled,
+a quickfix window is automatically opened in the new tab with its
 original size, view and position to help you open other quickfix items.
 (not correctly, but smartly determined)
 Default: >
-    let g:qfenter_enable_autoquickfix = 1
+    let g:qfenter_autoclose = 0
 <
 
 *g:qfenter_exclude_filetypes*
@@ -283,9 +283,27 @@ You can refer :help switchbuf for more details.
 ==============================================================================
 5. Deprecated Commands & Options                          *QFEnter-deprecated*
 
+These options are deprecated since version 2.4.3 and are supposed to be removed
+in version 2.5.0.
+
+*g:qfenter_enable_autoquickfix*
+Enable or disable automatic opening of quickfix window when 'open in a new
+tab' command is executed.
+If enabled, quickfix window is automatically opened in the new tab with its
+original size, view and position to help you open other quickfix items.
+(not correctly, but smartly determined)
+Default: >
+    let g:qfenter_enable_autoquickfix = 1
+<
+: Use |g:qfenter_autoclose| instead.
+
 
 ==============================================================================
 6. Changelog                                               *QFEnter-changelog*
+
+2.4.3                       2022/10/16
+    - Add a new option g:qfenter_autoclose and deprecate g:qfenter_enable_autoquickfix
+      Thanks for the suggestion auto-close quickfix, minhduc0711!
 
 2.4.2                       2022/10/15
     - Change the default value of g:qfenter_excluded_action to 'next'

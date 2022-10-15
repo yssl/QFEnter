@@ -64,8 +64,14 @@ if !has_key(g:qfenter_keymap, 'topen')
 	let g:qfenter_keymap.topen = ['<Leader><Tab>']
 endif
 
-if !exists('g:qfenter_enable_autoquickfix')
-	let g:qfenter_enable_autoquickfix = 1
+" deprecated. will be removed from 2.5.0
+" Now the default setting of the new option g:qfenter_autoclose=0 will open a quickfix in a new tab (if g:qfenter_enable_autoquickfix is not 0 before 2.5.0).
+"if !exists('g:qfenter_enable_autoquickfix')
+	"let g:qfenter_enable_autoquickfix = 1
+"endif
+
+if !exists('g:qfenter_autoclose')
+	let g:qfenter_autoclose = 0
 endif
 
 if !exists('g:qfenter_exclude_filetypes')
