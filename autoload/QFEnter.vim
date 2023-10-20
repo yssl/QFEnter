@@ -326,7 +326,7 @@ fun! s:CloseCurrentWinAndJumpTo(return_winnr)
 endfun
 
 fun! s:JumpToWin(winnum)
-	exec a:winnum.'wincmd w'
+	silent! exec a:winnum.'wincmd w'
 endfun
 
 fun! s:CloseCurrentTabAndJumpTo(return_tabnr)
