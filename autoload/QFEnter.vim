@@ -22,7 +22,7 @@ function! s:ExecuteCN(count, isloclist)
 	endif
 	try
 		execute cmd
-	catch E553
+	catch /E553/
 		echo 'QFEnter: cnext: No more items'
 	endtry
 endfunction
@@ -35,7 +35,7 @@ function! s:ExecuteCP(count, isloclist)
 	endif
 	try
 		execute cmd
-	catch E553
+	catch /E553/
 		echo 'QFEnter: cprev: No more items'
 	endtry
 endfunction
