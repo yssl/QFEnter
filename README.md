@@ -218,6 +218,20 @@ func! TestTab1Win1_Open()
 endfunc
 ```
 
+## Disabling visual mode mappings
+
+By default, each key in `g:qfenter_keymap` and `g:qfenter_custom_map_list` is mapped in both normal and visual mode,
+so that you can open multiple items at once by visual selection.
+If a key conflicts with a built-in visual mode command (e.g., `o`), you can disable the visual mode mappings:
+```vim
+let g:qfenter_enable_visual_maps = 0
+```
+
+The default setting is, 
+```vim
+let g:qfenter_enable_visual_maps = 1
+```
+
 [Vundle]: https://github.com/gmarik/Vundle.vim
 [NeoBundle]: https://github.com/Shougo/neobundle.vim
 [vim-plug]: https://github.com/junegunn/vim-plug

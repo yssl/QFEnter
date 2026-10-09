@@ -74,6 +74,10 @@ if !exists('g:qfenter_autoclose')
 	let g:qfenter_autoclose = 0
 endif
 
+if !exists('g:qfenter_enable_visual_maps')
+	let g:qfenter_enable_visual_maps = 1
+endif
+
 if !exists('g:qfenter_exclude_filetypes')
 	let g:qfenter_exclude_filetypes = []
 endif
@@ -135,13 +139,17 @@ function! s:RegisterKeymap()
 		let keepfocus = s:cmd_action_map[cmd][2]
 		for key in keylist
 			execute 'nnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.tabwinfunc.'","'.qfopencmd.'","'.keepfocus.'",0)<CR>'
-			execute 'vnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.tabwinfunc.'","'.qfopencmd.'","'.keepfocus.'",1)<CR>'
+			if g:qfenter_enable_visual_maps
+				execute 'xnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.tabwinfunc.'","'.qfopencmd.'","'.keepfocus.'",1)<CR>'
+			endif
 		endfor
 	endfor
 	for cfitem in g:qfenter_custom_map_list
 		for key in cfitem.keys
 			execute 'nnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.cfitem.tabwinfunc.'","'.cfitem.qfopencmd.'","'.cfitem.keepfocus.'",0)<CR>'
-			execute 'vnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.cfitem.tabwinfunc.'","'.cfitem.qfopencmd.'","'.cfitem.keepfocus.'",1)<CR>'
+			if g:qfenter_enable_visual_maps
+				execute 'xnoremap <silent> <buffer> '.key.' :call QFEnter#OpenQFItem("'.cfitem.tabwinfunc.'","'.cfitem.qfopencmd.'","'.cfitem.keepfocus.'",1)<CR>'
+			endif
 		endfor 
 	endfor
 endfunction

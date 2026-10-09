@@ -230,6 +230,15 @@ previously focused window while keeping focus in the quickfix window by typing `
     endfunc
 <
 
+*g:qfenter_enable_visual_maps*
+Enable or disable visual mode mappings for the keys in |g:qfenter_keymap|
+and |g:qfenter_custom_map_list|. If enabled, you can open multiple items at
+once by visual selection. Disable this if a key conflicts with a built-in
+visual mode command (e.g., `o`).
+Default: >
+    let g:qfenter_enable_visual_maps = 1
+<
+
 *g:qfenter_cc_cmd*
 *g:qfenter_ll_cmd*
 QFEnter internally uses |:cc| (or |:ll| for the location list) command
@@ -300,6 +309,11 @@ Default: >
 
 ==============================================================================
 6. Changelog                                               *QFEnter-changelog*
+
+2.4.4                       2026/10/10
+    - Add a new option g:qfenter_enable_visual_maps to disable visual mode mappings
+    - Use xnoremap instead of vnoremap for visual mode mappings
+      Thanks for the suggestion, Konfekt!
 
 2.4.3                       2022/10/16
     - Add a new option g:qfenter_autoclose and deprecate g:qfenter_enable_autoquickfix
